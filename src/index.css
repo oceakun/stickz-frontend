@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.border-gradient {
+  border-bottom: 1.5px solid;
+  border-radius:5px;
+  border-image-slice: 10;
+}
+
+.signOut-border-gradient {
+  border: 1.3px solid;
+  border-radius:2px;
+  border-image-slice: 10;
+}
+
+.outermost-border-gradient{
+  border-image-source: linear-gradient(
+    45deg,#605df0 ,#67c6e3
+    /* rgb(237, 225, 133),
+    rgb(243, 112, 182) ,
+    rgb(255, 0, 0) */
+  )}
+
+  .hero-border-gradient {
+    border: 3px solid;
+    border-bottom:none;
+    border-radius:5px;
+    border-image-slice: 10;
+  }
+
+  .herotext-border-gradient{
+    border-image-source: linear-gradient(
+      45deg,
+      rgb(133, 223, 237),
+      rgb(243, 112, 175) ,
+      rgb(255, 217, 0)
+    )}

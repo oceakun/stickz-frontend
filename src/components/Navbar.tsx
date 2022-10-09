@@ -3,13 +3,25 @@ import { ThemeContext } from "./contexts/ThemeContext";
 import { ThemeModeContext } from "./contexts/ThemeModeContext";
 import styled from "styled-components";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
+import { useNavigate } from "react-router-dom";
 
 interface Props {}
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const theme = useContext(ThemeContext);
   const themeModeContext = useContext(ThemeModeContext);
   const [themeToBeApplied, setThemeToBeApplied] = useState(theme.light);
+
+  const [notesButtonBackgroundColor, setNotesButtonBackgroundColor] = useState(
+    themeToBeApplied.navbarButtonHoverAndActiveColor
+  );
+
+  const [listsButtonBackgroundColor, setListsButtonBackgroundColor] =
+    useState("transparent");
+
+  const [drawButtonBackgroundColor, setDrawButtonBackgroundColor] =
+    useState("transparent");
 
   useEffect(() => {
     themeModeContext?.themeMode?.theme === "light"
@@ -26,21 +38,95 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    if (notesButtonBackgroundColor !== "transparent") {
+      setNotesButtonBackgroundColor(
+        themeToBeApplied.navbarButtonHoverAndActiveColor
+      );
+    }
+    if (listsButtonBackgroundColor !== "transparent") {
+      setListsButtonBackgroundColor(
+        themeToBeApplied.navbarButtonHoverAndActiveColor
+      );
+    }
+    if (drawButtonBackgroundColor !== "transparent") {
+      setDrawButtonBackgroundColor(
+        themeToBeApplied.navbarButtonHoverAndActiveColor
+      );
+    }
+  }, [themeToBeApplied]);
+
+  const handleNotesButton = (e: any) => {
+    e.preventDefault();
+    navigate("/home/notes");
+    setNotesButtonBackgroundColor(
+      themeToBeApplied.navbarButtonHoverAndActiveColor
+    );
+    setListsButtonBackgroundColor("transparent");
+    setDrawButtonBackgroundColor("transparent");
+  };
+
+  const handleListsButton = (e: any) => {
+    e.preventDefault();
+    navigate("/home/lists");
+    setNotesButtonBackgroundColor("transparent");
+    setListsButtonBackgroundColor(
+      themeToBeApplied.navbarButtonHoverAndActiveColor
+    );
+    setDrawButtonBackgroundColor("transparent");
+  };
+
+  const handleDrawButton = (e: any) => {
+    e.preventDefault();
+    navigate("/home/draw");
+    setNotesButtonBackgroundColor("transparent");
+    setListsButtonBackgroundColor("transparent");
+    setDrawButtonBackgroundColor(
+      themeToBeApplied.navbarButtonHoverAndActiveColor
+    );
+  };
+
   return (
     <NavbarContainer themeticProp={themeToBeApplied}>
-      <NavbarLogo themeticProp={themeToBeApplied}>stickza</NavbarLogo>
+      <NavbarLogo
+        themeticProp={themeToBeApplied}
+        onClick={() => navigate("/landingpage")}
+      >
+        stickza
+      </NavbarLogo>
       <NavbarOptions>
-        <NavbarButton themeticProp={themeToBeApplied}>NOTES</NavbarButton>
-        <NavbarButton themeticProp={themeToBeApplied}>LISTS</NavbarButton>
-        <NavbarButton themeticProp={themeToBeApplied}>DRAW</NavbarButton>
+        <NavbarButton
+          themeticProp={themeToBeApplied}
+          bgColor={notesButtonBackgroundColor}
+          onClick={handleNotesButton}
+        >
+          NOTES
+        </NavbarButton>
+        <NavbarButton
+          themeticProp={themeToBeApplied}
+          bgColor={listsButtonBackgroundColor}
+          onClick={handleListsButton}
+        >
+          LISTS
+        </NavbarButton>
+        <NavbarButton
+          themeticProp={themeToBeApplied}
+          bgColor={drawButtonBackgroundColor}
+          onClick={handleDrawButton}
+        >
+          DRAW
+        </NavbarButton>
         <NavbarToggleButton
           themeticProp={themeToBeApplied}
           onClick={themeToggleHandler}
         >
           <Brightness6Icon />
         </NavbarToggleButton>
-        <NavbarSignOutButton themeticProp={themeToBeApplied}>
-          SIGN OUT
+        <NavbarSignOutButton
+          themeticProp={themeToBeApplied}
+          onClick={() => navigate("/signin")}
+        >
+          Sign Out
         </NavbarSignOutButton>
       </NavbarOptions>
     </NavbarContainer>
@@ -95,23 +181,21 @@ const NavbarButton = styled.div`
   border-bottom: 1px transparent solid;
   padding: 0 5px 2px 5px;
   border-radius: 0px;
-  /* font-family: "Bungee Spice", cursive; */
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
+  background-color: ${(props: any) => props.bgColor};
   &:hover {
     cursor: pointer;
     opacity: 1;
     background-color: #f0f0bf;
-    background-color: ${(props: any) =>
-      props.themeticProp.navbarButtonHoverColor};
+    background-color: ${(props: any) => props.bgColor};
     color: ${(props: any) => props.themeticProp.navbarButtonActiveTextColor};
   }
 `;
 
 const NavbarSignOutButton = styled.div`
   border: none;
-  /* signoutButtonBackgroundColor */
   color: ${(props: any) => props.themeticProp.text};
   border-bottom: 1px transparent solid;
   padding: 0 5px 2px 5px;
@@ -121,7 +205,8 @@ const NavbarSignOutButton = styled.div`
   opacity: 0.8;
   background-color: ${(props: any) =>
     props.themeticProp.signoutButtonBackgroundColor};
-  color: #4f4d4d;
+  border: 1px solid
+    ${(props: any) => props.themeticProp.signoutButtonBorderColor};
   &:hover {
     cursor: pointer;
     opacity: 1;

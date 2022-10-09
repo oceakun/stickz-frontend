@@ -1,26 +1,26 @@
-export type Themetype = {
-    
-}
-
 export const theme = {
     light: {
         background: "#f6f7eb",
         navbarBackground: "white",
         text: "black",
         themetic: "red",
-        navbarButtonHoverColor:"#f0f0bf",
+        navbarButtonHoverAndActiveColor:"#f0f0bf",
         navbarButtonActiveTextColor:"black",
         toggleButtonColor: "#f1f111",
-        signoutButtonBackgroundColor:"#f0f0bf"
+        signoutButtonBackgroundColor:"#f7f7ee",
+        signoutButtonBorderColor:"#f1f111",
     },
+    
     dark: {
-        background: "black",
-        navbarBackground: "#180a26",
+        background: "#0c0314",
+        navbarBackground: "#200e33",
         text: "white",
         themetic:"blue",
-        navbarButtonHoverColor:"#ddc7f3",
-        navbarButtonActiveTextColor:"black",
+        navbarButtonHoverAndActiveColor:"#7d53a7",
+        navbarButtonActiveTextColor:"white",
         toggleButtonColor:"#bf93eb",
-        signoutButtonBackgroundColor:"#ddc7f3"
+        signoutButtonBackgroundColor:"#31194b",
+        signoutButtonBorderColor:"#bf93eb",
     }
 }
+
