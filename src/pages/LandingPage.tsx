@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 interface Props {}
 
@@ -13,17 +14,39 @@ const LandingPage = () => {
           stickza
         </LandingPageLogo>
 
-        <LandingPageNavbarButton onClick={() => navigate("/signin")}>
+        <LandingPageNavbarButton
+          style={{ padding: "2px 10px 4px 10px", fontSize: "12px" }}
+          onClick={() => navigate("/signin")}
+        >
           Sign In
         </LandingPageNavbarButton>
       </LandingPageNavbar>
       <LandingPageHero>
-        <LandingPageHeroText className="border-gradient signOut-border-gradient">
+        <LandingPageHeroText>
+          {/* <h3>okane = money</h3> */}
+
           <h3>okane + secure = okasure</h3>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At placeat
-          culpa obcaecati debitis. Ullam iure veritatis consequuntur, cumque
-          fugit sint vero eos accusantium animi vitae minus nesciunt pariatur
-          quae eligendi?
+          <LandingPageHeroTextBulletsContainer>
+            <LandingPageHeroTextBullet>
+              <KeyboardArrowRightIcon />
+              <p>We protect your money.</p>
+            </LandingPageHeroTextBullet>
+
+            <LandingPageHeroTextBullet>
+              <KeyboardArrowRightIcon />
+              <p>Transactions are easy.</p>
+            </LandingPageHeroTextBullet>
+
+            <LandingPageHeroTextBullet>
+              <KeyboardArrowRightIcon />
+              <p>No limits on transaction or deposit amount.</p>
+            </LandingPageHeroTextBullet>
+
+            <LandingPageHeroTextBullet>
+              <KeyboardArrowRightIcon />
+              <p>Lorem ipsum dolor sit amet.</p>
+            </LandingPageHeroTextBullet>
+          </LandingPageHeroTextBulletsContainer>
         </LandingPageHeroText>
         <LandingPageHeroButton onClick={() => navigate("/signup")}>
           Get started
@@ -44,18 +67,19 @@ const LandingPageNavbar = styled.div`
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  padding:2px;
-  background-color: #8393ef;
+  padding: 2px;
+  background-color: #111633;
 `;
 
 const LandingPageHero = styled.div`
   width: 100vw;
   background-color: transparent;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
   margin-top: 10vh;
+  text-align: justify;
 
   @media only screen and (max-width: 1200px) {
     width: 100vw;
@@ -72,12 +96,13 @@ const LandingPageHero = styled.div`
 const LandingPageLogo = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: normal;
   padding: 2px;
-  background: -webkit-linear-gradient(0deg, #5df0a7 ,#bce367);
+  /* background: -webkit-linear-gradient(0deg, #5df0a7 ,#bce367);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: #93f9e1;
   &:hover {
     cursor: pointer;
     opacity: 1;
@@ -85,9 +110,10 @@ const LandingPageLogo = styled.div`
 `;
 
 const LandingPageNavbarButton = styled.div`
-  border: 1px solid white;
-  background-color: tansparent;
-  color: #000000;
+  border: 1px solid transparent;
+  background-color: #1a214a;
+
+  color: white;
   padding: 5px 20px 10px 20px;
   opacity: 0.8;
   border-radius: 5px;
@@ -102,13 +128,14 @@ const LandingPageNavbarButton = styled.div`
 `;
 
 const LandingPageHeroButton = styled.div`
-  border: 2px solid white;
-  color: #000000;
+  border: 2px solid transparent;
+  color: white;
+  background-color: #1a214a;
   padding: 5px 20px 10px 20px;
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
-  border-radius:5px;
+  border-radius: 5px;
   &:hover {
     cursor: pointer;
     opacity: 1;
@@ -116,23 +143,49 @@ const LandingPageHeroButton = styled.div`
 `;
 
 const LandingPageHeroText = styled.div`
-  width: 30vw;
-  padding: 0 30px 30px 30px;
+  width: 60vw;
   font-family: "Quicksand", sans-serif;
-  color: #000000;
-  font-size: 20px;
+  color: white;
+  font-size: 16px;
   font-weight: normal;
-  background: -webkit-linear-gradient(35deg, #000000 50%, black 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-align: left;
+  line-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+
   > h3 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 30px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
     font-weight: normal;
-    background: -webkit-linear-gradient(35deg, #93f9e1 40%, #000000 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding:0;
+    color: #186369;
+    background-color: #0e1229;
+    letter-spacing: 0;
+    word-spacing: 0;
+    border-radius: 5px;
+    padding: 2px 10px 6px 10px;
   }
 `;
+
+const LandingPageHeroTextBullet = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  > .MuiSvgIcon-root {
+    color: #fc03be;
+    background-color: #220f56;
+    border-radius: 5px;
+  }
+  > p {
+    background-color: #0e1229;
+    padding: 4px 10px 8px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+`;
+
+const LandingPageHeroTextBulletsContainer = styled.div``;

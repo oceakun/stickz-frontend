@@ -19,7 +19,7 @@ export const ThemeModeContextProvider = ({
   children,
 }: ThemeModeContextProviderProps) => {
   const [themeMode, setThemeMode] = useState<ThemeModeType | null>({
-    theme: "light",
+    theme: "dark",
   });
   return (
     <ThemeModeContext.Provider value={{ themeMode, setThemeMode }}>

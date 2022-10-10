@@ -111,9 +111,9 @@ const LoginContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   /* position:absolute; */
-  border: #b9c6cd solid 1px;
+  /* border: #b9c6cd solid 1px; */
 
-  background-color: ${(props: any) => props.themeticProp.background};
+  background-color: ${(props: any) => props.themeticProp.signInAndSignOutCardBackgroundColor};
   border-radius: 5px;
   padding: 0 75px 10px 75px;
   > p {
@@ -187,11 +187,11 @@ const SubmitButtonContainer = styled.div`
     color: ${(props: any) => props.themeticProp.text};
     border: black 1px solid;
     border-radius: 3px;
-    opacity: 0.5;
+    opacity: 0.8;
     margin-top: 20px;
   }
   > Button:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
 `;
 

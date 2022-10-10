@@ -8,7 +8,8 @@ export const theme = {
         navbarButtonActiveTextColor:"black",
         toggleButtonColor: "#f1f111",
         signoutButtonBackgroundColor:"#f7f7ee",
-        signoutButtonBorderColor:"#f1f111",
+        signoutButtonBorderColor: "#f1f111",
+        signInAndSignOutCardBackgroundColor:"#eff1d6"
     },
     
     dark: {
@@ -20,7 +21,7 @@ export const theme = {
         navbarButtonActiveTextColor:"white",
         toggleButtonColor:"#bf93eb",
         signoutButtonBackgroundColor:"#31194b",
-        signoutButtonBorderColor:"#bf93eb",
+        signoutButtonBorderColor: "#bf93eb",
+        signInAndSignOutCardBackgroundColor:"#140522"
     }
 }
-

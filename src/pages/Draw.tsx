@@ -26,7 +26,7 @@ export default Draw
 
 const DrawContainer = styled.div`
 color: ${(props: any) => props.themeticProp.text};
-background-color: ${(props: any) => props.themeticProp.navbarBackground};
+/* background-color: ${(props: any) => props.themeticProp.navbarBackground}; */
 display:flex;
 flex-flow:column nowrap;
 align-items:center;

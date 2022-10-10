@@ -168,6 +168,7 @@ const NavbarLogo = styled.div`
 `;
 
 const NavbarOptions = styled.div`
+  padding:0 17px 0 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -180,7 +181,7 @@ const NavbarButton = styled.div`
   color: ${(props: any) => props.themeticProp.text};
   border-bottom: 1px transparent solid;
   padding: 0 5px 2px 5px;
-  border-radius: 0px;
+  border-radius: 4px;
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
