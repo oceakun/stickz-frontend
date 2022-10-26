@@ -1,36 +1,35 @@
 import { useContext, useState, useEffect } from "react";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { ThemeModeContext } from "./contexts/ThemeModeContext";
 import styled from "styled-components";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
+import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
 
 interface Props {}
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const theme = useContext(ThemeContext);
   const themeModeContext = useContext(ThemeModeContext);
-  const [themeToBeApplied, setThemeToBeApplied] = useState(theme.light);
 
   const [notesButtonBackgroundColor, setNotesButtonBackgroundColor] = useState(
-    themeToBeApplied.navbarButtonHoverAndActiveColor
+    window.location.pathname == "/home/notes" ||
+      window.location.pathname == "/home"
+      ? themeModeContext?.themeMode?.theme
+      : "transparent"
+  );
+  const [listsButtonBackgroundColor, setListsButtonBackgroundColor] = useState(
+    window.location.pathname == "/home/lists"
+      ? themeModeContext?.themeMode?.theme
+      : "transparent"
   );
 
-  const [listsButtonBackgroundColor, setListsButtonBackgroundColor] =
-    useState("transparent");
+  const [drawButtonBackgroundColor, setDrawButtonBackgroundColor] = useState(
+    window.location.pathname == "/home/draw"
+      ? themeModeContext?.themeMode?.theme
+      : "transparent"
+  );
 
-  const [drawButtonBackgroundColor, setDrawButtonBackgroundColor] =
-    useState("transparent");
-
-  useEffect(() => {
-    themeModeContext?.themeMode?.theme === "light"
-      ? setThemeToBeApplied(theme.light)
-      : setThemeToBeApplied(theme.dark);
-  }, [themeModeContext?.themeMode?.theme]);
-
-  const themeToggleHandler = (e: any) => {
-    e.preventDefault();
+  const switchTheme = () => {
     if (themeModeContext?.themeMode?.theme === "light") {
       themeModeContext?.setThemeMode({ theme: "dark" });
     } else {
@@ -41,26 +40,26 @@ const Navbar = () => {
   useEffect(() => {
     if (notesButtonBackgroundColor !== "transparent") {
       setNotesButtonBackgroundColor(
-        themeToBeApplied.navbarButtonHoverAndActiveColor
+        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
       );
     }
     if (listsButtonBackgroundColor !== "transparent") {
       setListsButtonBackgroundColor(
-        themeToBeApplied.navbarButtonHoverAndActiveColor
+        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
       );
     }
     if (drawButtonBackgroundColor !== "transparent") {
       setDrawButtonBackgroundColor(
-        themeToBeApplied.navbarButtonHoverAndActiveColor
+        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
       );
     }
-  }, [themeToBeApplied]);
+  }, [themeModeContext?.themeMode?.theme]);
 
   const handleNotesButton = (e: any) => {
     e.preventDefault();
     navigate("/home/notes");
     setNotesButtonBackgroundColor(
-      themeToBeApplied.navbarButtonHoverAndActiveColor
+      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
     );
     setListsButtonBackgroundColor("transparent");
     setDrawButtonBackgroundColor("transparent");
@@ -71,7 +70,7 @@ const Navbar = () => {
     navigate("/home/lists");
     setNotesButtonBackgroundColor("transparent");
     setListsButtonBackgroundColor(
-      themeToBeApplied.navbarButtonHoverAndActiveColor
+      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
     );
     setDrawButtonBackgroundColor("transparent");
   };
@@ -82,50 +81,36 @@ const Navbar = () => {
     setNotesButtonBackgroundColor("transparent");
     setListsButtonBackgroundColor("transparent");
     setDrawButtonBackgroundColor(
-      themeToBeApplied.navbarButtonHoverAndActiveColor
+      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
     );
   };
 
   return (
-    <NavbarContainer themeticProp={themeToBeApplied}>
-      <NavbarLogo
-        themeticProp={themeToBeApplied}
-        onClick={() => navigate("/landingpage")}
-      >
-        stickza
-      </NavbarLogo>
+    <NavbarContainer>
+      <NavbarLogo onClick={() => navigate("/landingpage")}>stickza</NavbarLogo>
       <NavbarOptions>
         <NavbarButton
-          themeticProp={themeToBeApplied}
           bgColor={notesButtonBackgroundColor}
           onClick={handleNotesButton}
         >
           NOTES
         </NavbarButton>
         <NavbarButton
-          themeticProp={themeToBeApplied}
           bgColor={listsButtonBackgroundColor}
           onClick={handleListsButton}
         >
           LISTS
         </NavbarButton>
         <NavbarButton
-          themeticProp={themeToBeApplied}
           bgColor={drawButtonBackgroundColor}
           onClick={handleDrawButton}
         >
           DRAW
         </NavbarButton>
-        <NavbarToggleButton
-          themeticProp={themeToBeApplied}
-          onClick={themeToggleHandler}
-        >
+        <NavbarToggleButton onClick={switchTheme}>
           <Brightness6Icon />
         </NavbarToggleButton>
-        <NavbarSignOutButton
-          themeticProp={themeToBeApplied}
-          onClick={() => navigate("/signin")}
-        >
+        <NavbarSignOutButton onClick={() => navigate("/signin")}>
           Sign Out
         </NavbarSignOutButton>
       </NavbarOptions>
@@ -137,7 +122,7 @@ export default Navbar;
 
 const NavbarContainer = styled.div`
   width: 100vw;
-  background-color: ${(props: any) => props.themeticProp.navbarBackground};
+  background-color: var(--navbarBackground);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -161,14 +146,14 @@ const NavbarLogo = styled.div`
   border: none;
   font-size: 20px;
   background-color: tansparent;
-  color: ${(props: any) => props.themeticProp.text};
+  color: var(--text);
   &:hover {
     cursor: pointer;
   }
 `;
 
 const NavbarOptions = styled.div`
-  padding:0 17px 0 0;
+  padding: 0 17px 0 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -177,37 +162,30 @@ const NavbarOptions = styled.div`
 `;
 
 const NavbarButton = styled.div`
-  border: none;
-  color: ${(props: any) => props.themeticProp.text};
-  border-bottom: 1px transparent solid;
+  color: var(--text);
+  border-bottom: 5px transparent solid;
   padding: 0 5px 2px 5px;
   border-radius: 4px;
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
-  background-color: ${(props: any) => props.bgColor};
+  border: 1px solid ${(props: any) => props.bgColor};
   &:hover {
     cursor: pointer;
     opacity: 1;
-    background-color: #f0f0bf;
-    background-color: ${(props: any) => props.bgColor};
-    color: ${(props: any) => props.themeticProp.navbarButtonActiveTextColor};
+    color: var(--navbarButtonActiveTextColor);
   }
 `;
 
 const NavbarSignOutButton = styled.div`
   border: none;
-  color: ${(props: any) => props.themeticProp.text};
-  border-bottom: 1px transparent solid;
+  color: var(--text);
   padding: 0 5px 2px 5px;
   border-radius: 2px;
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
-  background-color: ${(props: any) =>
-    props.themeticProp.signoutButtonBackgroundColor};
-  border: 1px solid
-    ${(props: any) => props.themeticProp.signoutButtonBorderColor};
+  background-color: var(--signoutButtonBackgroundColor);
   &:hover {
     cursor: pointer;
     opacity: 1;
@@ -216,8 +194,8 @@ const NavbarSignOutButton = styled.div`
 
 const NavbarToggleButton = styled.div`
   border: none;
-  background-color: ${(props: any) => props.themeticProp.navbarBackground};
-  color: ${(props: any) => props.themeticProp.text};
+  background-color: var(--navbarBackground);
+  color: var(--text);
   border-radius: 0px;
   font-weight: 500;
   font-size: 14px;
@@ -227,6 +205,6 @@ const NavbarToggleButton = styled.div`
     opacity: 1;
   }
   > .MuiSvgIcon-root {
-    color: ${(props: any) => props.themeticProp.toggleButtonColor};
+    color: var(--toggleButtonColor);
   }
 `;

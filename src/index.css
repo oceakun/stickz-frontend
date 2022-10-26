@@ -46,3 +46,40 @@ code {
       rgb(243, 112, 175) ,
       rgb(255, 217, 0)
     )}
+
+    :root {
+      --background: white;
+      --text-primary: black;
+      --text-secondary: royalblue;
+      --accent: purple;
+      
+      --background: #f6f7eb;
+      --navbarBackground: #ffffff;
+      --text: black;
+      --themetic: red;
+      --navbarButtonHoverAndActiveColor:#f1f111;
+      /* f0f0bf */
+      --navbarButtonActiveTextColor:black;
+      --toggleButtonColor: #f1f111;
+      --signoutButtonBackgroundColor:#f3f5e0;
+      --signoutButtonBorderColor: #f1f111;
+      --signInAndSignOutCardBackgroundColor:#eff1d6;
+    }
+    [data-theme='dark'] {
+      --background: black;
+      --text-primary: white;
+      --text-secondary: grey;
+      --accent: darkred;
+
+      
+      --background: #0c0314;
+      --navbarBackground: #150523;
+      --text: white;
+      --themetic:blue;
+      --navbarButtonHoverAndActiveColor:#7d53a7;
+      --navbarButtonActiveTextColor:white;
+      --toggleButtonColor:#bf93eb;
+      --signoutButtonBackgroundColor:#31194b;
+      --signoutButtonBorderColor: #bf93eb;
+      --signInAndSignOutCardBackgroundColor:#140522;
+    }

@@ -20,4 +20,3 @@ export const ThemeContextProvider = ({
     </ThemeContext.Provider>
   );
 };
-

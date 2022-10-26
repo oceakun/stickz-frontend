@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../components/contexts/ThemeContext";
 import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
+import useLocalStorage from "use-local-storage";
 
 interface Props {}
 
@@ -23,16 +24,6 @@ const SignUp = () => {
   const [unmatchedPasswordWarning, setUnmatchedPasswordWarning] =
     useState("none");
   const [alreadyInUseWarning, setAlreadyInUseWarning] = useState("none");
-
-  const theme = useContext(ThemeContext);
-  const themeModeContext = useContext(ThemeModeContext);
-  const [themeToBeApplied, setThemeToBeApplied] = useState(theme.light);
-
-  useEffect(() => {
-    themeModeContext?.themeMode?.theme === "light"
-      ? setThemeToBeApplied(theme.light)
-      : setThemeToBeApplied(theme.dark);
-  }, [themeModeContext?.themeMode?.theme]);
 
   const handleEmail = (e: any) => {
     e.preventDefault();
@@ -61,10 +52,10 @@ const SignUp = () => {
   let navigate = useNavigate();
 
   return (
-    <SignUpContainer themeticProp={themeToBeApplied}>
-      <RegistrationContainer themeticProp={themeToBeApplied}>
+    <SignUpContainer >
+      <RegistrationContainer >
         <h3>Register</h3>
-        <InputFieldContainer themeticProp={themeToBeApplied}>
+        <InputFieldContainer >
           <p>E-mail</p>
           <input
             type="email"
@@ -76,7 +67,7 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <InputFieldContainer themeticProp={themeToBeApplied}>
+        <InputFieldContainer >
           <p>Password</p>
           <input
             type="password"
@@ -88,7 +79,7 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <InputFieldContainer themeticProp={themeToBeApplied}>
+        <InputFieldContainer >
           <p>Confirm password</p>
           <input
             type="password"
@@ -100,13 +91,13 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <SubmitButtonContainer themeticProp={themeToBeApplied}>
+        <SubmitButtonContainer >
           <button type="button" onClick={register}>
             Sign-Up
           </button>
         </SubmitButtonContainer>
 
-        <SignInOptionContainer themeticProp={themeToBeApplied}>
+        <SignInOptionContainer >
           New to okasure ?{" "}
           <span
             onClick={() => {
@@ -119,14 +110,14 @@ const SignUp = () => {
 
         <UnmatchedPasswordWarningContainer
           displayStatus={unmatchedPasswordWarning}
-          themeticProp={themeToBeApplied}
+          
         >
           <p style={{ textAlign: "left" }}>* Passwords don't match.</p>
         </UnmatchedPasswordWarningContainer>
         {/* setAlreadyInUseWarning */}
         <AlreadyInUseEmailWarningContainer
           displayStatus={unmatchedPasswordWarning}
-          themeticProp={themeToBeApplied}
+          
         >
           <p style={{ textAlign: "left" }}>
             * A user with the entered e-mail already exists.
@@ -151,13 +142,11 @@ const RegistrationContainer = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-end;
   align-items: center;
-  /* position:absolute; */
-  /* border: #b9c6cd solid 1px; */
-  background-color: ${(props: any) => props.themeticProp.signInAndSignOutCardBackgroundColor};
+  background-color: var(--signInAndSignOutCardBackgroundColor);
   border-radius: 5px;
   padding: 0 75px 10px 75px;
   > p {
-    color: ${(props: any) => props.themeticProp.text};
+    color:var(--text);
     font-size: 13px;
     opacity: 0.7;
   }
@@ -167,24 +156,22 @@ const RegistrationContainer = styled.div`
     font-size: 20px;
     font-weight: normal;
     padding: 2px;
-    color: ${(props: any) => props.themeticProp.text};
+    color:var(--text);
   }
 `;
 
 const InputFieldContainer = styled.div`
   > p {
-    color: ${(props: any) => props.themeticProp.text};
+    color:var(--text);
     opacity: 0.6;
-    /* text-align:center; */
   }
   > input[type="email"] {
     width: 195px;
     border: black 1px solid;
     border-radius: 3px;
     height: 25px;
-    background-color: ${(props: any) =>
-      props.themeticProp.signoutButtonBackgroundColor};
-    color: ${(props: any) => props.themeticProp.text};
+    background-color:var(--signoutButtonBackgroundColor);
+    color:var(--text);
     opacity: 0.7;
     text-align: center;
   }
@@ -197,9 +184,8 @@ const InputFieldContainer = styled.div`
     border: black 1px solid;
     border-radius: 3px;
     height: 25px;
-    background-color: ${(props: any) =>
-      props.themeticProp.signoutButtonBackgroundColor};
-    color: ${(props: any) => props.themeticProp.text};
+  background-color:var(--signoutButtonBackgroundColor);
+    color:var(--text);
     opacity: 0.7;
     text-align: center;
   }
@@ -211,17 +197,17 @@ const InputFieldContainer = styled.div`
 
 const SubmitButtonContainer = styled.div`
   > p {
-    color: ${(props: any) => props.themeticProp.text};
+    color:var(--text);
     opacity: 0.6;
   }
   > Button {
-    background-color: ${(props: any) => props.themeticProp.navbarBackground};
+    background-color:var(--navbarBackground);
+    color:var(--text);
     width: 200px;
     cursor: pointer;
     height: 25px;
     text-align: center;
-    color: ${(props: any) => props.themeticProp.text};
-    border: black 1px solid;
+    border: white 1px solid;
     border-radius: 3px;
     opacity: 0.8;
     margin-top: 20px;
@@ -232,9 +218,9 @@ const SubmitButtonContainer = styled.div`
 `;
 
 const SignInOptionContainer = styled.p`
-  color: ${(props: any) => props.themeticProp.text};
+  color:var(--text);
   > span {
-    border-bottom: 1px solid ${(props: any) => props.themeticProp.text};
+    border-bottom: 1px solid var(--text);
   }
   > span:hover {
     cursor: pointer;

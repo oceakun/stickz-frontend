@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export type ThemeModeType = {
-    theme: string;
+    theme: string|null;
   };
   
 type ThemeModeContextType = {
@@ -19,7 +19,7 @@ export const ThemeModeContextProvider = ({
   children,
 }: ThemeModeContextProviderProps) => {
   const [themeMode, setThemeMode] = useState<ThemeModeType | null>({
-    theme: "dark",
+    theme: JSON.parse(localStorage.getItem("theme")||"{}"),
   });
   return (
     <ThemeModeContext.Provider value={{ themeMode, setThemeMode }}>

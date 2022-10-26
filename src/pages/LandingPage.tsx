@@ -1,6 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import useLocalStorage from "use-local-storage";
 
 interface Props {}
 
@@ -8,47 +10,41 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <LandingPageContainer>
-      <LandingPageNavbar>
-        <LandingPageLogo onClick={() => navigate("/home")}>
+    <LandingPageContainer >
+      <LandingPageNavbar >
+        <LandingPageLogo onClick={() => navigate("/home")} >
           stickza
         </LandingPageLogo>
 
         <LandingPageNavbarButton
           style={{ padding: "2px 10px 4px 10px", fontSize: "12px" }}
           onClick={() => navigate("/signin")}
+          
         >
           Sign In
         </LandingPageNavbarButton>
       </LandingPageNavbar>
-      <LandingPageHero>
-        <LandingPageHeroText>
-          {/* <h3>okane = money</h3> */}
-
-          <h3>okane + secure = okasure</h3>
-          <LandingPageHeroTextBulletsContainer>
-            <LandingPageHeroTextBullet>
+      <LandingPageHero >
+        <LandingPageHeroText >
+          <h3>stickza = that sticks</h3>
+          <LandingPageHeroTextBulletsContainer >
+            <LandingPageHeroTextBullet >
               <KeyboardArrowRightIcon />
-              <p>We protect your money.</p>
+              <p>Document your findings in an organised manner.</p>
             </LandingPageHeroTextBullet>
 
-            <LandingPageHeroTextBullet>
+            <LandingPageHeroTextBullet >
               <KeyboardArrowRightIcon />
-              <p>Transactions are easy.</p>
+              <p>Take down lists.</p>
             </LandingPageHeroTextBullet>
 
-            <LandingPageHeroTextBullet>
+            <LandingPageHeroTextBullet >
               <KeyboardArrowRightIcon />
-              <p>No limits on transaction or deposit amount.</p>
-            </LandingPageHeroTextBullet>
-
-            <LandingPageHeroTextBullet>
-              <KeyboardArrowRightIcon />
-              <p>Lorem ipsum dolor sit amet.</p>
+              <p>Draw.</p>
             </LandingPageHeroTextBullet>
           </LandingPageHeroTextBulletsContainer>
         </LandingPageHeroText>
-        <LandingPageHeroButton onClick={() => navigate("/signup")}>
+        <LandingPageHeroButton onClick={() => navigate("/signup")} >
           Get started
         </LandingPageHeroButton>
       </LandingPageHero>
@@ -58,7 +54,10 @@ const LandingPage = () => {
 
 export default LandingPage;
 
-const LandingPageContainer = styled.div``;
+const LandingPageContainer = styled.div`
+  background-color: #0a041b;
+  height:100vh;
+`;
 
 const LandingPageNavbar = styled.div`
   width: 100vw;
@@ -99,9 +98,6 @@ const LandingPageLogo = styled.div`
   font-size: 26px;
   font-weight: normal;
   padding: 2px;
-  /* background: -webkit-linear-gradient(0deg, #5df0a7 ,#bce367);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   color: #93f9e1;
   &:hover {
     cursor: pointer;
@@ -117,7 +113,6 @@ const LandingPageNavbarButton = styled.div`
   padding: 5px 20px 10px 20px;
   opacity: 0.8;
   border-radius: 5px;
-  /* font-family: "Bungee Spice", cursive; */
   font-weight: 500;
   font-size: 14px;
   opacity: 0.8;
@@ -165,7 +160,7 @@ const LandingPageHeroText = styled.div`
     letter-spacing: 0;
     word-spacing: 0;
     border-radius: 5px;
-    padding: 2px 10px 6px 10px;
+    padding: 4px 10px 7px 10px;
   }
 `;
 
