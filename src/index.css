@@ -1,85 +1,126 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .border-gradient {
   border-bottom: 1.5px solid;
-  border-radius:5px;
+  border-radius: 5px;
   border-image-slice: 10;
 }
 
 .signOut-border-gradient {
   border: 1.3px solid;
-  border-radius:2px;
+  border-radius: 2px;
   border-image-slice: 10;
 }
 
-.outermost-border-gradient{
+.outermost-border-gradient {
   border-image-source: linear-gradient(
-    45deg,#605df0 ,#67c6e3
-    /* rgb(237, 225, 133),
+    45deg,
+    #605df0,
+    #67c6e3 /* rgb(237, 225, 133),
     rgb(243, 112, 182) ,
     rgb(255, 0, 0) */
-  )}
+  );
+}
 
-  .hero-border-gradient {
-    border: 3px solid;
-    border-bottom:none;
-    border-radius:5px;
-    border-image-slice: 10;
-  }
+.hero-border-gradient {
+  border: 3px solid;
+  border-bottom: none;
+  border-radius: 5px;
+  border-image-slice: 10;
+}
 
-  .herotext-border-gradient{
-    border-image-source: linear-gradient(
-      45deg,
-      rgb(133, 223, 237),
-      rgb(243, 112, 175) ,
-      rgb(255, 217, 0)
-    )}
+.herotext-border-gradient {
+  border-image-source: linear-gradient(
+    45deg,
+    rgb(133, 223, 237),
+    rgb(243, 112, 175),
+    rgb(255, 217, 0)
+  );
+}
 
-    :root {
-      --background: white;
-      --text-primary: black;
-      --text-secondary: royalblue;
-      --accent: purple;
-      
-      --background: #f6f7eb;
-      --navbarBackground: #ffffff;
-      --text: black;
-      --themetic: red;
-      --navbarButtonHoverAndActiveColor:#f1f111;
-      /* f0f0bf */
-      --navbarButtonActiveTextColor:black;
-      --toggleButtonColor: #f1f111;
-      --signoutButtonBackgroundColor:#f3f5e0;
-      --signoutButtonBorderColor: #f1f111;
-      --signInAndSignOutCardBackgroundColor:#eff1d6;
-    }
-    [data-theme='dark'] {
-      --background: black;
-      --text-primary: white;
-      --text-secondary: grey;
-      --accent: darkred;
+::-webkit-scrollbar {
+  width: 3px;
+}
 
-      
-      --background: #0c0314;
-      --navbarBackground: #150523;
-      --text: white;
-      --themetic:blue;
-      --navbarButtonHoverAndActiveColor:#7d53a7;
-      --navbarButtonActiveTextColor:white;
-      --toggleButtonColor:#bf93eb;
-      --signoutButtonBackgroundColor:#31194b;
-      --signoutButtonBorderColor: #bf93eb;
-      --signInAndSignOutCardBackgroundColor:#140522;
-    }
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--navbarBackgrounnd);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--folderHoverBackgroundColor);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--toggleButtonColor);
+}
+
+:root {
+  --sidebarBackgroundColor: #fafaf7;
+  --sidebarOptionsColor: #f1f111;
+  --sidebarBorderColor:#f1f111;
+  
+--fileContentOptionsColor : #f1f111;
+--folderHoverBackgroundColor: #f3f5e0;
+
+  --textInputFieldBackgroundColor: #f3f5e0;
+  --textInputFieldColor: #3a3d3f;
+
+  --background: #f6f7eb;
+
+  --navbarBackground: #ffffff;
+  --navbarIconColor: #f1f111;
+
+  --text: black;
+  --iconWrapperHoverColor:rgb(209, 200, 133);
+  
+  --themetic: red;
+  --navbarButtonHoverAndActiveColor: #f1f111;
+  --navbarButtonActiveTextColor: black;
+  --toggleButtonColor: #f1f111;
+  --signoutButtonBackgroundColor: #f3f5e0;
+  --signoutButtonBorderColor: #f1f111;
+  --signInAndSignOutCardBackgroundColor: #eff1d6;
+}
+
+[data-theme="dark"] {
+
+  --sidebarBackgroundColor: #1d0731;
+  --sidebarOptionsColor: #7d53a7;
+  --sidebarBorderColor:#7d53a7;
+
+  --fileContentOptionsColor : #7d53a7;
+  --folderHoverBackgroundColor: #3c1f5c;
+
+  --textInputFieldBackgroundColor: #31194b;
+  --textInputFieldColor: #93989d;
+
+  --background: #0c0314;
+  --navbarBackground: #290c45;
+  --navbarIconColor: #bf93eb;
+
+  --text: white;
+--iconWrapperHoverColor:#9d4aef;
+
+  --themetic: blue;
+  --navbarButtonHoverAndActiveColor: #7d53a7;
+  --navbarButtonActiveTextColor: white;
+  --toggleButtonColor: #bf93eb;
+  --signoutButtonBackgroundColor: #3b0970;
+  --signoutButtonBorderColor: #bf93eb;
+  --signInAndSignOutCardBackgroundColor: #140522;
+}

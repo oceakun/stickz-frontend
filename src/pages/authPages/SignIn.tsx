@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { ThemeContext } from "../components/contexts/ThemeContext";
-import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
+import { ThemeContext } from "../../components/contexts/ThemeContext";
+import { ThemeModeContext } from "../../components/contexts/ThemeModeContext";
 import useLocalStorage from "use-local-storage";
 
 interface Props {}
@@ -32,10 +32,10 @@ const SignIn = () => {
   };
 
   return (
-    <SignInContainer >
-      <LoginContainer >
+    <SignInContainer>
+      <LoginContainer>
         <h3>Log-In</h3>
-        <InputFieldContainer >
+        <InputFieldContainer>
           <p>E-mail</p>
           <input
             type="email"
@@ -47,7 +47,7 @@ const SignIn = () => {
           ></input>
         </InputFieldContainer>
 
-        <InputFieldContainer >
+        <InputFieldContainer>
           <p>Password</p>
           <input
             type="password"
@@ -59,13 +59,13 @@ const SignIn = () => {
           ></input>
         </InputFieldContainer>
 
-        <SubmitButtonContainer >
+        <SubmitButtonContainer>
           <button type="submit" onClick={logIn}>
             Sign-In
           </button>
         </SubmitButtonContainer>
 
-        <SignUpOptionContainer >
+        <SignUpOptionContainer>
           New to okasure ?{" "}
           <span
             onClick={() => {
@@ -160,7 +160,7 @@ const SubmitButtonContainer = styled.div`
     cursor: pointer;
     height: 25px;
     text-align: center;
-    border: white 1px solid;
+    border: var(--toggleButtonColor) 1px solid;
     border-radius: 3px;
     opacity: 0.8;
     margin-top: 20px;

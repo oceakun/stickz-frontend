@@ -1,15 +1,19 @@
 import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "use-local-storage";
 import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
+import { FileSectionStatusContext } from "./contexts/FileSectionStatusContext";
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface Props {}
 
 const Navbar = () => {
   const navigate = useNavigate();
   const themeModeContext = useContext(ThemeModeContext);
+
+  const fileSectionStatusContext = useContext(FileSectionStatusContext);
 
   const [notesButtonBackgroundColor, setNotesButtonBackgroundColor] = useState(
     window.location.pathname == "/home/notes" ||
@@ -34,6 +38,22 @@ const Navbar = () => {
       themeModeContext?.setThemeMode({ theme: "dark" });
     } else {
       themeModeContext?.setThemeMode({ theme: "light" });
+    }
+  };
+
+  const switchFileSectionDisplayStatus = () => {
+    console.log("foldersection toggled");
+    if (
+      fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut ===
+      "open"
+    ) {
+      fileSectionStatusContext?.setFileSectionStatus({
+        fileSectionOpenOrShut: "shut",
+      });
+    } else {
+      fileSectionStatusContext?.setFileSectionStatus({
+        fileSectionOpenOrShut: "open",
+      });
     }
   };
 
@@ -87,9 +107,18 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <NavbarLogo onClick={() => navigate("/landingpage")}>stickza</NavbarLogo>
-      <NavbarOptions>
-        <NavbarButton
+      <NavbarFirstHalf>
+        <NavbarMenuIcon onClick={switchFileSectionDisplayStatus}>
+          <MenuIcon />
+        </NavbarMenuIcon>
+
+        <NavbarLogo onClick={() => navigate("/landingpage")}>
+          stickza
+        </NavbarLogo>
+      </NavbarFirstHalf>
+
+      <NavbarOptionsSecondHalf>
+        {/* <NavbarButton
           bgColor={notesButtonBackgroundColor}
           onClick={handleNotesButton}
         >
@@ -106,14 +135,14 @@ const Navbar = () => {
           onClick={handleDrawButton}
         >
           DRAW
-        </NavbarButton>
+        </NavbarButton> */}
         <NavbarToggleButton onClick={switchTheme}>
-          <Brightness6Icon />
+          <LightModeIcon />
         </NavbarToggleButton>
         <NavbarSignOutButton onClick={() => navigate("/signin")}>
           Sign Out
         </NavbarSignOutButton>
-      </NavbarOptions>
+      </NavbarOptionsSecondHalf>
     </NavbarContainer>
   );
 };
@@ -125,40 +154,53 @@ const NavbarContainer = styled.div`
   background-color: var(--navbarBackground);
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
-  @media only screen and (max-width: 1200px) {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 3vh;
-    width: 100vw;
-    > hr {
-      color: white;
-      width: 100%;
-    }
+`;
+
+const NavbarFirstHalf = styled.div`
+  padding: 0 20px 0 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.5vw;
+`;
+
+const NavbarMenuIcon = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+  color: var(--sidebarOptionsColor);
+  &:hover {
+    cursor: pointer;
+    color: var(--iconWrapperHoverColor);
   }
 `;
 
 const NavbarLogo = styled.div`
-  border: none;
-  font-size: 20px;
-  background-color: tansparent;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding:0 0 5px 0;
   color: var(--text);
+  font-size:18px;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const NavbarOptions = styled.div`
-  padding: 0 17px 0 0;
+const NavbarOptionsSecondHalf = styled.div`
+  padding: 0 20px 0 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 5vw;
+  gap: 3.5vw;
 `;
 
 const NavbarButton = styled.div`
@@ -183,9 +225,9 @@ const NavbarSignOutButton = styled.div`
   padding: 0 5px 2px 5px;
   border-radius: 2px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.8;
-  background-color: var(--signoutButtonBackgroundColor);
+  border: 1px solid var(--signoutButtonBorderColor);
   &:hover {
     cursor: pointer;
     opacity: 1;

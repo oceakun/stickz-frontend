@@ -26,7 +26,7 @@ const LandingPage = () => {
       </LandingPageNavbar>
       <LandingPageHero >
         <LandingPageHeroText >
-          <h3>stickza = that sticks</h3>
+          {/* <h3>stickza = that sticks</h3> */}
           <LandingPageHeroTextBulletsContainer >
             <LandingPageHeroTextBullet >
               <KeyboardArrowRightIcon />
@@ -76,8 +76,8 @@ const LandingPageHero = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
+  gap:100px;
   align-items: center;
-  margin-top: 10vh;
   text-align: justify;
 
   @media only screen and (max-width: 1200px) {

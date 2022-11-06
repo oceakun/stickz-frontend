@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { ThemeContext } from "../components/contexts/ThemeContext";
-import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
+import { ThemeContext } from "../../components/contexts/ThemeContext";
+import { ThemeModeContext } from "../../components/contexts/ThemeModeContext";
 import useLocalStorage from "use-local-storage";
 
 interface Props {}
@@ -16,7 +16,6 @@ type AlreadyInUseEmailWarningType = {
 };
 
 const SignUp = () => {
-
   const [registrationEmail, setRegistrationEmail] = useState("");
   const [registrationPassword, setRegistrationPassword] = useState("");
   const [confirmedRegistrationPassword, setConfirmedRegistrationPassword] =
@@ -52,10 +51,10 @@ const SignUp = () => {
   let navigate = useNavigate();
 
   return (
-    <SignUpContainer >
-      <RegistrationContainer >
+    <SignUpContainer>
+      <RegistrationContainer>
         <h3>Register</h3>
-        <InputFieldContainer >
+        <InputFieldContainer>
           <p>E-mail</p>
           <input
             type="email"
@@ -67,7 +66,7 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <InputFieldContainer >
+        <InputFieldContainer>
           <p>Password</p>
           <input
             type="password"
@@ -79,7 +78,7 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <InputFieldContainer >
+        <InputFieldContainer>
           <p>Confirm password</p>
           <input
             type="password"
@@ -91,13 +90,13 @@ const SignUp = () => {
           ></input>
         </InputFieldContainer>
 
-        <SubmitButtonContainer >
+        <SubmitButtonContainer>
           <button type="button" onClick={register}>
             Sign-Up
           </button>
         </SubmitButtonContainer>
 
-        <SignInOptionContainer >
+        <SignInOptionContainer>
           New to okasure ?{" "}
           <span
             onClick={() => {
@@ -110,14 +109,12 @@ const SignUp = () => {
 
         <UnmatchedPasswordWarningContainer
           displayStatus={unmatchedPasswordWarning}
-          
         >
           <p style={{ textAlign: "left" }}>* Passwords don't match.</p>
         </UnmatchedPasswordWarningContainer>
         {/* setAlreadyInUseWarning */}
         <AlreadyInUseEmailWarningContainer
           displayStatus={unmatchedPasswordWarning}
-          
         >
           <p style={{ textAlign: "left" }}>
             * A user with the entered e-mail already exists.
@@ -146,7 +143,7 @@ const RegistrationContainer = styled.div`
   border-radius: 5px;
   padding: 0 75px 10px 75px;
   > p {
-    color:var(--text);
+    color: var(--text);
     font-size: 13px;
     opacity: 0.7;
   }
@@ -156,13 +153,13 @@ const RegistrationContainer = styled.div`
     font-size: 20px;
     font-weight: normal;
     padding: 2px;
-    color:var(--text);
+    color: var(--text);
   }
 `;
 
 const InputFieldContainer = styled.div`
   > p {
-    color:var(--text);
+    color: var(--text);
     opacity: 0.6;
   }
   > input[type="email"] {
@@ -170,8 +167,8 @@ const InputFieldContainer = styled.div`
     border: black 1px solid;
     border-radius: 3px;
     height: 25px;
-    background-color:var(--signoutButtonBackgroundColor);
-    color:var(--text);
+    background-color: var(--signoutButtonBackgroundColor);
+    color: var(--text);
     opacity: 0.7;
     text-align: center;
   }
@@ -184,8 +181,8 @@ const InputFieldContainer = styled.div`
     border: black 1px solid;
     border-radius: 3px;
     height: 25px;
-  background-color:var(--signoutButtonBackgroundColor);
-    color:var(--text);
+    background-color: var(--signoutButtonBackgroundColor);
+    color: var(--text);
     opacity: 0.7;
     text-align: center;
   }
@@ -197,17 +194,17 @@ const InputFieldContainer = styled.div`
 
 const SubmitButtonContainer = styled.div`
   > p {
-    color:var(--text);
+    color: var(--text);
     opacity: 0.6;
   }
   > Button {
-    background-color:var(--navbarBackground);
-    color:var(--text);
+    background-color: var(--navbarBackground);
+    color: var(--text);
     width: 200px;
     cursor: pointer;
     height: 25px;
     text-align: center;
-    border: white 1px solid;
+    border: var(--toggleButtonColor) 1px solid;
     border-radius: 3px;
     opacity: 0.8;
     margin-top: 20px;
@@ -218,7 +215,7 @@ const SubmitButtonContainer = styled.div`
 `;
 
 const SignInOptionContainer = styled.p`
-  color:var(--text);
+  color: var(--text);
   > span {
     border-bottom: 1px solid var(--text);
   }
