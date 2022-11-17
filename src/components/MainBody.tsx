@@ -7,12 +7,8 @@ interface Props {}
 const MainBody = () => {
   return (
     <MainBodyContainer>
-      <SidebarContainer>
         <Sidebar />
-      </SidebarContainer>
-      <FileContentContainer>
         <FileContent />
-      </FileContentContainer>
     </MainBodyContainer>
   );
 };
@@ -20,17 +16,16 @@ const MainBody = () => {
 export default MainBody;
 
 const MainBodyContainer = styled.div`
-  background-color: var(--background);
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: flex-start;
-`;
-
-const SidebarContainer = styled.div`
-flex-grow: 0;
-`;
-
-const FileContentContainer = styled.div`
-flex-grow: 1;
+  /* justify-content: flex-start; */
+  /* align-self: stretch; */
+  height:90%;
+  position:relative;
+  box-sizing:border-box;
+  flex:none;
+  order:0;
+  align-self: stretch;
+  flex-grow:1;
 `;

@@ -1,5 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Just+Another+Hand&family=Patrick+Hand&display=swap");
+
+/* Perfect */
+/* font-family: 'Catamaran', sans-serif; */
+/* normal */
+/* font-family: 'Just Another Hand', cursive; */
+/* fast */
+/* font-family: 'Patrick Hand', cursive; */
+
 body {
   margin: 0;
+background-color:red;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -70,41 +80,43 @@ code {
 }
 
 :root {
-  --sidebarBackgroundColor: #fafaf7;
-  --sidebarOptionsColor: #f1f111;
-  --sidebarBorderColor:#f1f111;
-  
---fileContentOptionsColor : #f1f111;
---folderHoverBackgroundColor: #f3f5e0;
+  --sidebarBackgroundColor: #faf7f7;
+  --sidebarOptionsColor: #ff7758;
+  --sidebarBorderColor: #ff7758;
 
-  --textInputFieldBackgroundColor: #f3f5e0;
+  --fileContentOptionsColor: #ff7758;
+  --folderHoverBackgroundColor: #f8f0ef;
+
+  --textInputFieldBackgroundColor: #f8eae8;
   --textInputFieldColor: #3a3d3f;
 
-  --background: #f6f7eb;
+ --fileContentTextColor:#f3e4e1;
+
+  --background: #f8f0ef;
 
   --navbarBackground: #ffffff;
   --navbarIconColor: #f1f111;
 
   --text: black;
-  --iconWrapperHoverColor:rgb(209, 200, 133);
-  
+  --iconWrapperHoverColor: rgb(209, 200, 133);
+  --fileContentOptionIconHoverColor: rgb(209, 200, 133);
+
   --themetic: red;
   --navbarButtonHoverAndActiveColor: #f1f111;
   --navbarButtonActiveTextColor: black;
-  --toggleButtonColor: #f1f111;
+  --toggleButtonColor: #ff7758;
   --signoutButtonBackgroundColor: #f3f5e0;
-  --signoutButtonBorderColor: #f1f111;
+  --signoutButtonBorderColor: #ff7758;
   --signInAndSignOutCardBackgroundColor: #eff1d6;
 }
 
 [data-theme="dark"] {
-
   --sidebarBackgroundColor: #1d0731;
   --sidebarOptionsColor: #7d53a7;
-  --sidebarBorderColor:#7d53a7;
+  --sidebarBorderColor: #7d53a7;
 
-  --fileContentOptionsColor : #7d53a7;
-  --folderHoverBackgroundColor: #3c1f5c;
+  --fileContentOptionsColor: #7d53a7;
+  --folderHoverBackgroundColor: #1d0731;
 
   --textInputFieldBackgroundColor: #31194b;
   --textInputFieldColor: #93989d;
@@ -114,7 +126,8 @@ code {
   --navbarIconColor: #bf93eb;
 
   --text: white;
---iconWrapperHoverColor:#9d4aef;
+  --iconWrapperHoverColor: #9d4aef;
+  --fileContentOptionIconHoverColor: #9d4aef;
 
   --themetic: blue;
   --navbarButtonHoverAndActiveColor: #7d53a7;

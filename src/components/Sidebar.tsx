@@ -12,6 +12,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DownloadIcon from "@mui/icons-material/Download";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
+import { FilesForSidebar } from "./FilesForSidebar";
 
 interface Props {}
 
@@ -26,39 +27,7 @@ const Sidebar = (props: any) => {
   const [createNewFolderOptionDisplay, setCreateNewFolderOptionDisplay] =
     useState("none");
 
-  const [folderList, setFolderList] = useState([
-    {
-      name: "Folder 1",
-      fileIds: ["file1", "file2"],
-      status: "shut",
-      folderId: "folder1",
-    },
-    {
-      name: "Folder 2",
-      fileIds: ["file3", "file4"],
-      status: "shut",
-      folderId: "folder2",
-    },
-    {
-      name: "---",
-      fileIds: [
-        "file5",
-        "file6",
-        "file7",
-        "file8",
-        "file9",
-        "file10",
-        "file11",
-        "file12",
-        "file13",
-        "file14",
-        "file15",
-        "file16",
-      ],
-      status: "open",
-      folderId: "folder3",
-    },
-  ]);
+  const [folderList, setFolderList] = useState(FilesForSidebar);
 
   const fileSectionStatusContext = useContext(FileSectionStatusContext);
 
@@ -68,6 +37,10 @@ const Sidebar = (props: any) => {
 
   useEffect(() => {
     console.log("app - useEffect called");
+    console.log("folderList : ", folderList);
+    folderList.map((folder, folderIndex) => {
+      console.log("folder.name :", folder.name);
+    });
     setFileSectionStatus(
       fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
     );
@@ -108,15 +81,14 @@ const Sidebar = (props: any) => {
     }
     setInputFieldDisplay("none");
     setCreateNewFileOptionDisplay("none");
-
     console.log("handleCreateNewFileIconClicked invoked");
   };
 
-  const handleFolderClick = (e: any, indexOfTheClickedChannel: any) => {
+  const handleFolderClick = (e: any, indexOfTheClickedFolder: any) => {
     console.log("folder clicked");
     setFolderList((current) =>
       current.map((folder, index) => {
-        if (index == indexOfTheClickedChannel) {
+        if (index == indexOfTheClickedFolder) {
           if (folder.status == "open") {
             return { ...folder, status: "shut" };
           } else {
@@ -124,6 +96,39 @@ const Sidebar = (props: any) => {
           }
         } else {
           return { ...folder };
+        }
+      })
+    );
+  };
+
+  const handleFileClicked = (
+    e: any,
+    indexOfTheClickedFile: any,
+    indexOfTheEncompassingFolder: any
+  ) => {
+    console.log("file clicked");
+    e.preventDefault();
+    setFolderList((current) =>
+      current.map((folder, folderIndex) => {
+        if (folderIndex == indexOfTheEncompassingFolder) {
+          folder.fileIds.map((file, fileIndex) => {
+            if (fileIndex == indexOfTheClickedFile) {
+              console.log("file : ", file);
+              file.fileClicked = true;
+              return file;
+            } else {
+              file.fileClicked = false;
+              return file;
+            }
+          });
+          console.log("folder : ", folder);
+          return folder;
+        } else {
+          folder.fileIds.map((file, fileIndex) => {
+            file.fileClicked = false;
+            return file;
+          });
+          return folder;
         }
       })
     );
@@ -204,7 +209,16 @@ const Sidebar = (props: any) => {
                     key={folder.folderId}
                   >
                     {folder.fileIds.map((file, fileIndex) => {
-                      return <IndividualFile>{file}</IndividualFile>;
+                      return (
+                        <IndividualFile
+                          onClick={(event: any) =>
+                            handleFileClicked(event, fileIndex, folderIndex)
+                          }
+                          fileClicked={file.fileClicked}
+                        >
+                          {file.fileName}
+                        </IndividualFile>
+                      );
                     })}
                   </FilesBelongingToThisFolder>
                 </IndividualFolder>
@@ -213,7 +227,16 @@ const Sidebar = (props: any) => {
               return (
                 <FilesBelongingToTheUnnamedFolder>
                   {folder.fileIds.map((file, fileIndex) => {
-                    return <IndividualFile>{file}</IndividualFile>;
+                    return (
+                      <IndividualFile
+                        onClick={(event: any) =>
+                          handleFileClicked(event, fileIndex, folderIndex)
+                        }
+                        fileClicked={file.fileClicked}
+                      >
+                        {file.fileName}
+                      </IndividualFile>
+                    );
                   })}
                 </FilesBelongingToTheUnnamedFolder>
               );
@@ -228,13 +251,22 @@ const Sidebar = (props: any) => {
 export default Sidebar;
 
 const SidebarContainer = styled.div`
-  /* flex: 0 1 auto; */
   color: var(--text);
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: flex-start;
   background-color: var(--sidebarBackgroundColor);
+  border-right: 1px solid var(--sidebarBorderColor);
+  position: relative;
+  height: 100%;
+  order: 0;
+  box-sizing: border-box;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
 `;
 
 const SidebarOptions = styled.div`
@@ -242,33 +274,50 @@ const SidebarOptions = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  justify-content: flex-start;
+  /* justify-content:  flex-start; */
   gap: 10px;
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  align-self: stretch;
   padding: 10px;
-  min-height: 500px;
-  height: 100vh;
-  border-right: 1px solid var(--sidebarBorderColor);
+
+  box-sizing: border-box;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
 `;
 
 const SidebarSecondHalf = styled.div`
   display: ${(props: onClickToolkitTypes) =>
     props.displayStatus == "open" ? "flex" : "none"};
-  flex-flow: column nowrap;
+  flex-flow: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  box-sizing: border-box;
   gap: 10px;
   padding: 10px;
-  border-right: 1px solid var(--sidebarBorderColor);
-  min-height: 500px;
-  height: 100vh;
+  position: relative;
+  border-left: 1px solid var(--sidebarBorderColor);
+  height: 100%;
+  /* min-height: 500px;*/
+  /* z-index:3; */
+
+  /* flex:none; */
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 `;
 
 const OptionIconWrapper = styled.div`
   background-color: transparent;
   color: var(--sidebarOptionsColor);
+  opacity: 0.8;
   &:hover {
     cursor: pointer;
-    color: var(--iconWrapperHoverColor);
+    opacity: 1;
+    /* color: var(--iconWrapperHoverColor); */
   }
 `;
 
@@ -279,7 +328,7 @@ const SidebarFileSearchField = styled.div`
   justify-content: center;
   > input[type="text"] {
     min-width: 150px;
-    width: 15vw;
+    /* width: 15%; */
     border: none;
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -306,7 +355,7 @@ const SidebarNewFileCreationField = styled.div`
 
   > input[type="text"] {
     min-width: 150px;
-    width: 15vw;
+    /* width: 15%; */
     border: none;
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -333,7 +382,7 @@ const SidebarNewFolderCreationField = styled.div`
 
   > input[type="text"] {
     min-width: 150px;
-    width: 15vw;
+    /* width: 15%; */
     border: none;
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -362,8 +411,7 @@ const IconWrapper = styled.div`
   height: 25px;
   background-color: var(--textInputFieldBackgroundColor);
   opacity: 0.6;
-  min-width:25px;
-  width:2vw;
+  width: 25px;
 
   > .MuiSvgIcon-root {
     color: var(--textInputFieldColor);
@@ -381,17 +429,25 @@ const AllFilesAndFoldersContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
-  min-height: 445px;
-  height: 82vh;
+  /* box-sizing: border-box; */
+  /* min-height: 445px; */
+  height: 100%;
+  width: 100%;
   min-width: 175px;
-  width: 17vw;
-  overflow: scroll;
-  overflow-x: hidden;
-  /* ::-webkit-scrollbar {
+  box-sizing: border-box;
+  /* width: 17vw; */
+  overflow-y: scroll;
+  /* overflow-y: auto; */
+  ::-webkit-scrollbar {
     display: none;
-  } */
-  border-radius:5px;
-  padding:5px;
+  }
+  border-radius: 5px;
+  padding: 5px 5px 0 5px;
+
+  /* flex:none; */
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
 `;
 
 const EachFilesAndFoldersContainer = styled.div`
@@ -424,6 +480,7 @@ const FolderIconAndNameContainer = styled.div`
   padding: 0 8px 0 0;
   margin-bottom: 5px;
   font-size: 13px;
+  opacity: 0.7;
   &:hover {
     opacity: 1;
     background-color: var(--folderHoverBackgroundColor);
@@ -446,6 +503,7 @@ const FilesBelongingToThisFolder = styled.div`
   flex-flow: column nowrap;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 5px;
   border-left: 1px solid var(--text);
   opacity: 0.7;
   padding: 0 0 0 9px;
@@ -457,7 +515,8 @@ const FilesBelongingToTheUnnamedFolder = styled.div`
   flex-flow: column nowrap;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 5px;
+  opacity: 0.7;
 `;
 
 const IndividualFile = styled.div`
@@ -465,11 +524,17 @@ const IndividualFile = styled.div`
   border-right: transparent solid 1px;
   padding: 3px 5px 3px 5px;
   margin-left: 5px;
-  opacity: 0.7;
+  opacity: ${(props: any) => (props.fileClicked === true ? 1 : 0.7)};
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
   justify-content: flex-start;
+  border-radius: 3px;
+  background-color: ${(props: any) =>
+    props.fileClicked === true
+      ? "var(--folderHoverBackgroundColor)"
+      : "transparent"};
+
   &:hover {
     opacity: 1;
     background-color: var(--folderHoverBackgroundColor);

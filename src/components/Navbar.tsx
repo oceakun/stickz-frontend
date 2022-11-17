@@ -149,23 +149,25 @@ const Navbar = () => {
 
 export default Navbar;
 
-const NavbarContainer = styled.div`
-  width: 100vw;
+const NavbarContainer = styled.nav`
   background-color: var(--navbarBackground);
   display: flex;
+  box-sizing: border-box;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: .5em;
+  height:10%;
+  width: 100%;
 `;
 
 const NavbarFirstHalf = styled.div`
-  padding: 0 20px 0 0;
+  /* padding: 0 20px 0 0; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 3.5vw;
+  gap: 1em;
 `;
 
 const NavbarMenuIcon = styled.div`
@@ -175,7 +177,9 @@ const NavbarMenuIcon = styled.div`
   justify-content: flex-start;
   background-color: transparent;
   color: var(--sidebarOptionsColor);
+  opacity:0.8;
   &:hover {
+  opacity:1;
     cursor: pointer;
     color: var(--iconWrapperHoverColor);
   }
@@ -195,12 +199,12 @@ const NavbarLogo = styled.div`
 `;
 
 const NavbarOptionsSecondHalf = styled.div`
-  padding: 0 20px 0 0;
+  /* padding: 0 20px 0 0; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 3.5vw;
+  gap: 1em;
 `;
 
 const NavbarButton = styled.div`
