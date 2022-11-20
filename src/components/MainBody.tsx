@@ -19,8 +19,6 @@ const MainBodyContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  /* justify-content: flex-start; */
-  /* align-self: stretch; */
   height:90%;
   position:relative;
   box-sizing:border-box;

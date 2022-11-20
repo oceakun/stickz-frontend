@@ -1,13 +1,9 @@
-// import React from 'react'
-
-// interface Props {}
-
 export const FilesForSidebar = [
   {
     name: "Folder 1",
     fileIds: [
-      { fileName: "file1", fileClicked: false },
-      { fileName: "file2", fileClicked: false },
+      { fileName: "file1", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file2", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
     ],
     status: "shut",
     folderId: "folder1",
@@ -16,8 +12,8 @@ export const FilesForSidebar = [
   {
     name: "Folder 2",
     fileIds: [
-      { fileName: "file3", fileClicked: false },
-      { fileName: "file4", fileClicked: false },
+      { fileName: "file3", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file4", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
     ],
     status: "shut",
     folderId: "folder2",
@@ -26,22 +22,21 @@ export const FilesForSidebar = [
   {
     name: "---",
     fileIds: [
-      { fileName: "file5", fileClicked: false },
-      { fileName: "file6", fileClicked: false },
-      { fileName: "file7", fileClicked: false },
-      { fileName: "file8", fileClicked: false },
-      { fileName: "file9", fileClicked: false },
-      { fileName: "file10", fileClicked: false },
-      { fileName: "file11", fileClicked: false },
-      { fileName: "file12", fileClicked: false },
-      { fileName: "file13", fileClicked: false },
-      { fileName: "file14", fileClicked: false },
-      { fileName: "file15", fileClicked: false },
-      { fileName: "file16", fileClicked: false },
+      { fileName: "file5", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file6", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file7", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file8", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file9", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file10", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file11", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file12", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file13", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file14", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file15", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
+      { fileName: "file16", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
     ],
     status: "open",
     folderId: "folder3",
     folderClicked: false,
   },
 ];
-// export default FilesForSidebar

@@ -2,14 +2,16 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import MainBody from "../components/MainBody";
-
+import Settings from "../components/modalWindows/Settings";
 interface Props {}
 
 const Home = () => {
   return (
     <HomeContainer>
       <Navbar />
+
       <MainBody />
+      {/* <Settings /> */}
       {/* <Outlet /> */}
     </HomeContainer>
   );

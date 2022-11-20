@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-background-color:red;
+  background-color: red;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -20,6 +20,7 @@ background-color:red;
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+    font-size: medium;
 }
 
 .border-gradient {
@@ -90,7 +91,13 @@ code {
   --textInputFieldBackgroundColor: #f8eae8;
   --textInputFieldColor: #3a3d3f;
 
- --fileContentTextColor:#f3e4e1;
+  --fileContentTextColor: #f3e4e1;
+
+  --colorPalleteIndividualColor1: rgb(203, 55, 109);
+  --colorPalleteIndividualColor2: rgb(0, 85, 255);
+  --colorPalleteIndividualColor3: rgb(181, 44, 222);
+  --colorPalleteIndividualColor4: rgb(13, 84, 51);
+  --colorPalleteIndividualColor5: rgb(83, 80, 80);
 
   --background: #f8f0ef;
 
@@ -105,35 +112,57 @@ code {
   --navbarButtonHoverAndActiveColor: #f1f111;
   --navbarButtonActiveTextColor: black;
   --toggleButtonColor: #ff7758;
+  --leftborderForFilesOfAFolder: #f5ccc3;
   --signoutButtonBackgroundColor: #f3f5e0;
   --signoutButtonBorderColor: #ff7758;
   --signInAndSignOutCardBackgroundColor: #eff1d6;
+
+  --sidebarContainerTopHalf:#ffffff;
+  --sidebarContainerMidHalf:#faebe7;
+  --sidebarContainerBottomHalf:#f7dad3;
+  
+  --sidebarContainerTopHalf:#f3e0db;
+  --sidebarContainerMidHalf:#f3e0db;
+  --sidebarContainerBottomHalf:#f7ecec;
+
+  --transparent:transparent;
 }
 
 [data-theme="dark"] {
   --sidebarBackgroundColor: #1d0731;
   --sidebarOptionsColor: #7d53a7;
   --sidebarBorderColor: #7d53a7;
-
   --fileContentOptionsColor: #7d53a7;
   --folderHoverBackgroundColor: #1d0731;
-
+  --colorPalleteIndividualColor1: crimson;
+  --colorPalleteIndividualColor2: cyan;
+  --colorPalleteIndividualColor3: magenta;
+  --colorPalleteIndividualColor4: beige;
+  --colorPalleteIndividualColor5: gray;
   --textInputFieldBackgroundColor: #31194b;
   --textInputFieldColor: #93989d;
-
   --background: #0c0314;
   --navbarBackground: #290c45;
   --navbarIconColor: #bf93eb;
-
   --text: white;
   --iconWrapperHoverColor: #9d4aef;
   --fileContentOptionIconHoverColor: #9d4aef;
-
   --themetic: blue;
   --navbarButtonHoverAndActiveColor: #7d53a7;
   --navbarButtonActiveTextColor: white;
   --toggleButtonColor: #bf93eb;
+  --leftborderForFilesOfAFolder: #684190;
   --signoutButtonBackgroundColor: #3b0970;
   --signoutButtonBorderColor: #bf93eb;
   --signInAndSignOutCardBackgroundColor: #140522;
+
+  /* --sidebarContainerTopHalf:#290c45;
+  --sidebarContainerMidHalf:#160428;
+  --sidebarContainerBottomHalf:#11041d; */
+  
+  --sidebarContainerTopHalf:#11041d;
+  --sidebarContainerMidHalf:#11041d;
+  --sidebarContainerBottomHalf:#180529;
+
+  --transparent:transparent;
 }

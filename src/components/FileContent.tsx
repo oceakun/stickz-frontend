@@ -137,33 +137,36 @@ const FileContent = () => {
         <ColorPallete displayStatus={colorPalleteDisplayStatus}>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
-              handleColorSelectionFromPallete(event, "crimson")
+              handleColorSelectionFromPallete(event, "var(--colorPalleteIndividualColor1)")
             }
-            backgroundColor="crimson"
+            // backgroundColor="crimson"
+            backgroundColor="var(--colorPalleteIndividualColor1)"
           ></ColorPalleteIndividualColor>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
-              handleColorSelectionFromPallete(event, "cyan")
+              handleColorSelectionFromPallete(event, "var(--colorPalleteIndividualColor2)")
             }
-            backgroundColor="cyan"
+            // backgroundColor="cyan"
+            backgroundColor="var(--colorPalleteIndividualColor2)"
+
           ></ColorPalleteIndividualColor>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
-              handleColorSelectionFromPallete(event, "magenta")
+              handleColorSelectionFromPallete(event, "var(--colorPalleteIndividualColor3)")
             }
-            backgroundColor="magenta"
+            backgroundColor="var(--colorPalleteIndividualColor3)"
           ></ColorPalleteIndividualColor>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
-              handleColorSelectionFromPallete(event, "beige")
+              handleColorSelectionFromPallete(event, "var(--colorPalleteIndividualColor4)")
             }
-            backgroundColor="beige"
+            backgroundColor="var(--colorPalleteIndividualColor4)"
           ></ColorPalleteIndividualColor>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
-              handleColorSelectionFromPallete(event, "gray")
+              handleColorSelectionFromPallete(event, "var(--colorPalleteIndividualColor5)")
             }
-            backgroundColor="gray"
+            backgroundColor="var(--colorPalleteIndividualColor5)"
           ></ColorPalleteIndividualColor>
         </ColorPallete>
 
@@ -210,7 +213,7 @@ const FileContent = () => {
         ref={ref}
         textColor={textColor}
         spellCheck="false"
-        placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat itaque quae pariatur porro explicabo. Nam, suscipit consectetur aperiam vel totam ipsa officiis, id blanditiis temporibus conser."
+        // placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat itaque quae pariatur porro explicabo. Nam, suscipit consectetur aperiam vel totam ipsa officiis, id blanditiis temporibus conser."
         value={textContent}
         onChange={handleTextContentModification}
       ></FileContentBody>
@@ -344,7 +347,7 @@ const ColorPalleteIndividualColor = styled.div`
 `;
 
 const BulletsPalleteIndividualIcon = styled.div`
-  font-size: 16px;
+  font-size: 17px;
   color: var(--toggleButtonColor);
   border-radius: 5px;
   opacity: 0.8;

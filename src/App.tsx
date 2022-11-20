@@ -29,20 +29,20 @@ function App() {
   );
 
   useEffect(() => {
-    console.log("app - useEffect called");
-    console.log(
-      "themeModeContext?.themeMode?.theme : ",
-      themeModeContext?.themeMode?.theme
-    );
+    // console.log("app - useEffect called");
+    // console.log(
+    //   "themeModeContext?.themeMode?.theme : ",
+    //   themeModeContext?.themeMode?.theme
+    // );
     setTheme(themeModeContext?.themeMode?.theme);
   }, [themeModeContext?.themeMode?.theme]);
 
   useEffect(() => {
-    console.log("app - useEffect called");
-    console.log(
-      "fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut : ",
-      fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
-    );
+    // console.log("app - useEffect called");
+    // console.log(
+    //   "fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut : ",
+    //   fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
+    // );
     setFileSectionStatus(
       fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
     );
