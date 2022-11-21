@@ -140,20 +140,16 @@ const Sidebar = (props: any) => {
     e.preventDefault();
 
     const newFolderList = folderList.map((folder, folderIndex) => {
-      console.log("inside the folders map");
       if (folderIndex == indexOfTheEncompassingFolder) {
         folder.fileIds.map((file, fileIndex) => {
-          console.log("inside the files map");
           if (fileIndex == indexOfTheClickedFile) {
             file.checkboxClicked = !file.checkboxClicked;
             file.selectedWithSelectAllIcon = false;
-            console.log("file.checkboxClicked : ", file.checkboxClicked);
             return file;
           }
         });
         return folder;
       } else {
-        console.log("folder dont match");
         folder.fileIds.map((file, fileIndex) => {
           return file;
         });
@@ -165,39 +161,58 @@ const Sidebar = (props: any) => {
 
   const selectAllFiles = () => {
     const newFolderList = folderList.map((folder, folderIndex) => {
-      console.log("inside the folders map");
       folder.fileIds.map((file, fileIndex) => {
-        console.log("inside the files map");
+        console.log("before");
+        console.log("file.checkboxClicked : ", file.checkboxClicked);
+        console.log(
+          "file.selectedWithSelectAllIcon : ",
+          file.selectedWithSelectAllIcon
+        );
+
         if (
           file.checkboxClicked == true &&
           file.selectedWithSelectAllIcon == true
         ) {
+          console.log("if-1");
           file.checkboxClicked = false;
           file.selectedWithSelectAllIcon = true;
         }
-        if (
+
+        else if (
           file.checkboxClicked == false &&
           file.selectedWithSelectAllIcon == false
         ) {
+          console.log("if-2");
           file.checkboxClicked = true;
           file.selectedWithSelectAllIcon = true;
         }
-        if (
+
+        else if (
           file.checkboxClicked == false &&
           file.selectedWithSelectAllIcon == true
         ) {
+          console.log("if-3");
           file.checkboxClicked = true;
           file.selectedWithSelectAllIcon = true;
         }
-        if (
-          file.checkboxClicked == true &&
-          file.selectedWithSelectAllIcon == false
-        ) {
+
+        else{
+          console.log("if-4");
+          file.checkboxClicked = true;
+          file.selectedWithSelectAllIcon = false;
         }
+
+        console.log("after");
+        console.log("file.checkboxClicked : ", file.checkboxClicked);
+        console.log(
+          "file.selectedWithSelectAllIcon : ",
+          file.selectedWithSelectAllIcon
+        );
         return file;
       });
       return folder;
     });
+
     setFolderList(newFolderList);
   };
 
@@ -428,14 +443,16 @@ const SidebarContainerTopHalf = styled.div`
   padding: 5px;
   border-radius: 5px 5px 0 0;
   background-color: var(--sidebarContainerTopHalf);
+
+  /* background-image: linear-gradient(transparent,var(--sidebarContainerTopHalf)); */
 `;
 
 const DarkVerticalLink = styled.div`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 3.5em;
-  width:1.5em;
+  height: 0.5em;
+  width: 1.4em;
   background-color: var(--sidebarContainerMidHalf);
   /* border-left: 0.5em solid var(--sidebarContainerMidHalf); */
   /* border-right: 0.5em solid var(--sidebarContainerMidHalf); */
@@ -454,8 +471,11 @@ const LightVerticalLink = styled.div`
   margin-left: auto;
   margin-right: auto;
   height: 5em;
-  width:1.5em;
-  background-image: linear-gradient(var(--sidebarContainerMidHalf),var(--sidebarContainerBottomHalf));
+  width: 1.1em;
+  background-image: linear-gradient(
+    var(--sidebarContainerMidHalf),
+    var(--sidebarContainerBottomHalf)
+  );
   /* border-left: 0.5em solid var(--sidebarContainerBottomHalf); */
   /* border-right: 0.5em solid var(--sidebarContainerBottomHalf); */
 `;
@@ -466,9 +486,11 @@ const SidebarContainerBottomHalf = styled.div`
   gap: 5px;
   padding: 5px;
   border-radius: 0 0 5px 5px;
-  background-image: linear-gradient(var(--sidebarContainerBottomHalf),transparent);
+  background-image: linear-gradient(
+    var(--sidebarContainerBottomHalf),
+    transparent
+  );
   /* background-color: var(--sidebarContainerBottomHalf); */
-
 `;
 
 const SidebarSecondHalf = styled.div`
