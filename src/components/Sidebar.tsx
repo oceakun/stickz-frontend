@@ -68,7 +68,7 @@ const Sidebar = (props: any) => {
       folders: [...foldersArray],
       files: [...filesArray],
     });
-  }, []);
+  }, [folderList]);
 
   useEffect(() => {
     setFileSectionStatus(
@@ -111,9 +111,9 @@ const Sidebar = (props: any) => {
   };
 
   const handleFolderClicked = (e: any, indexOfTheClickedFolder: any) => {
-    setFolderList((current) =>
-      current.map((folder, index) => {
-        if (index == indexOfTheClickedFolder) {
+    const newFolderList = 
+      folderList.map((folder, folderIndex) => {
+        if (folderIndex == indexOfTheClickedFolder) {
           if (folder.status == "open") {
             return { ...folder, status: "shut" };
           } else {
@@ -123,7 +123,8 @@ const Sidebar = (props: any) => {
           return { ...folder };
         }
       })
-    );
+
+    setFolderList(newFolderList);
   };
 
   const handleFileClicked = (
@@ -132,10 +133,9 @@ const Sidebar = (props: any) => {
     indexOfTheEncompassingFolder: any
   ) => {
     e.preventDefault();
-    console.log("file clicked");
-    const newFolderList = folderList.map((folder, folderIndex) => {
+    const newFolderList =
+      folderList.map((folder, folderIndex) => {
       if (folderIndex == indexOfTheEncompassingFolder) {
-        // folder.status = "open";
         folder.fileIds.map((file, fileIndex) => {
           if (fileIndex == indexOfTheClickedFile) {
             file.fileClicked = true;
@@ -146,12 +146,12 @@ const Sidebar = (props: any) => {
           }
         });
         return { ...folder, status: "open" };
-      } else {
+      }
+      else {
         folder.fileIds.map((file, fileIndex) => {
           file.fileClicked = false;
           return file;
         });
-        // folder.status = "shut";
         return { ...folder, status: "shut" };
       }
     });
@@ -244,41 +244,50 @@ const Sidebar = (props: any) => {
     e: any,
     nameOfTheClickedEntity: any
   ) => {
-    console.log("openAnEntityFromSearchResultContainer");
     folderList.map((folder, folderIndex) => {
       if (folder.name == nameOfTheClickedEntity) {
-        console.log("folder : ", folder);
-        console.log("folderIndex : ", folderIndex);
         handleFolderClicked(e, folderIndex);
       }
       folder.fileIds.map((file, fileIndex) => {
         if (file.fileName == nameOfTheClickedEntity) {
-          console.log("file : ", file);
-          console.log("fileIndex : ", fileIndex);
           handleFileClicked(e, fileIndex, folderIndex);
         }
-        console.log("files : ", filteredFolderList.files);
       });
     });
   };
 
+
   const handleNewFolder = () => {
     const folderName = newFolderName;
-    console.log("folderName = ", folderName);
     const newFolderObject = {
       name: folderName,
-        fileIds: [
-        ],
-        status: "shut",
-        folderId: "folderk",
-        folderClicked: false,
-    }
-    console.log("new folder : " , newFolderObject);
-    setFolderList([...folderList , (newFolderObject)]);
-    
+      fileIds: [],
+      status: "shut",
+      folderId: "folderk",
+      folderClicked: false,
+    };
+    const draftFolderList = [...folderList];
+    draftFolderList.splice(draftFolderList.length - 1, 0, newFolderObject);
+    setFolderList(draftFolderList);
   };
+
+
   const handleNewFile = () => {
-        // add the filername to the fileList 
+    const fileName = newFileName;
+    const newFileObject = {
+      fileName: fileName,
+      fileClicked: false,
+      checkboxClicked: false,
+      selectedWithSelectAllIcon: false,
+    };
+    const draftFolderList = [...folderList.map((folder, folderIndex) => {
+      if (folder.name === "---") {
+        const modifiedFolder = { ...folder, fileIds: [...folder.fileIds, newFileObject] };
+        return { ...modifiedFolder };
+      }
+      return folder;
+    })];
+    setFolderList(draftFolderList);
   };
 
   return (
@@ -350,7 +359,6 @@ const Sidebar = (props: any) => {
               const fileName = e.target.value;
               setNewFileName(fileName);
             }}
-            
           ></input>
           <IconWrapper onClick={handleNewFile}>
             <AddIcon />
@@ -368,8 +376,7 @@ const Sidebar = (props: any) => {
               setNewFolderName(folderName);
             }}
           ></input>
-          <IconWrapper 
-            onClick={handleNewFolder}>
+          <IconWrapper onClick={handleNewFolder}>
             <AddIcon />
           </IconWrapper>
         </SidebarNewFolderCreationField>
@@ -489,6 +496,7 @@ const Sidebar = (props: any) => {
                 onMouseDown={(event: any) =>
                   openAnEntityFromSearchResultContainer(event, folderName)
                 }
+                key={folderIndex}
               >
                 <SearchFieldResultContainerEntityIcon>
                   <FolderIcon />|
@@ -506,6 +514,7 @@ const Sidebar = (props: any) => {
                 onMouseDown={(event: any) =>
                   openAnEntityFromSearchResultContainer(event, fileName)
                 }
+                key={fileIndex}
               >
                 <SearchFieldResultContainerEntityIcon>
                   <InsertDriveFileIcon />|
@@ -621,6 +630,7 @@ const SidebarSecondHalf = styled.div`
   padding-top: 10px;
   position: relative;
   border-right: 1px solid var(--fileContentBackgroundColor);
+  background-color: var(--sidebarBackgroundColor);
   height: 100%;
   padding-bottom: 0;
   order: 1;
