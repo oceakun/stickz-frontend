@@ -15,28 +15,31 @@ const Navbar = () => {
 
   const fileSectionStatusContext = useContext(FileSectionStatusContext);
 
-  const [notesButtonBackgroundColor, setNotesButtonBackgroundColor] = useState(
-    window.location.pathname == "/home/notes" ||
-      window.location.pathname == "/home"
-      ? themeModeContext?.themeMode?.theme
-      : "transparent"
-  );
-  const [listsButtonBackgroundColor, setListsButtonBackgroundColor] = useState(
-    window.location.pathname == "/home/lists"
-      ? themeModeContext?.themeMode?.theme
-      : "transparent"
-  );
+  // const [notesButtonBackgroundColor, setNotesButtonBackgroundColor] = useState(
+  //   window.location.pathname == "/home/notes" ||
+  //     window.location.pathname == "/home"
+  //     ? themeModeContext?.themeMode?.theme
+  //     : "transparent"
+  // );
+  // const [listsButtonBackgroundColor, setListsButtonBackgroundColor] = useState(
+  //   window.location.pathname == "/home/lists"
+  //     ? themeModeContext?.themeMode?.theme
+  //     : "transparent"
+  // );
 
-  const [drawButtonBackgroundColor, setDrawButtonBackgroundColor] = useState(
-    window.location.pathname == "/home/draw"
-      ? themeModeContext?.themeMode?.theme
-      : "transparent"
-  );
+  // const [drawButtonBackgroundColor, setDrawButtonBackgroundColor] = useState(
+  //   window.location.pathname == "/home/draw"
+  //     ? themeModeContext?.themeMode?.theme
+  //     : "transparent"
+  // );
 
   const switchTheme = () => {
     if (themeModeContext?.themeMode?.theme === "light") {
       themeModeContext?.setThemeMode({ theme: "dark" });
-    } else {
+    } else if(themeModeContext?.themeMode?.theme === "dark"){
+      themeModeContext?.setThemeMode({ theme: "mid" });
+    }
+    else {
       themeModeContext?.setThemeMode({ theme: "light" });
     }
   };
@@ -57,53 +60,53 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    if (notesButtonBackgroundColor !== "transparent") {
-      setNotesButtonBackgroundColor(
-        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-      );
-    }
-    if (listsButtonBackgroundColor !== "transparent") {
-      setListsButtonBackgroundColor(
-        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-      );
-    }
-    if (drawButtonBackgroundColor !== "transparent") {
-      setDrawButtonBackgroundColor(
-        themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-      );
-    }
-  }, [themeModeContext?.themeMode?.theme]);
+  // useEffect(() => {
+  //   if (notesButtonBackgroundColor !== "transparent") {
+  //     setNotesButtonBackgroundColor(
+  //       themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //     );
+  //   }
+  //   if (listsButtonBackgroundColor !== "transparent") {
+  //     setListsButtonBackgroundColor(
+  //       themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //     );
+  //   }
+  //   if (drawButtonBackgroundColor !== "transparent") {
+  //     setDrawButtonBackgroundColor(
+  //       themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //     );
+  //   }
+  // }, [themeModeContext?.themeMode?.theme]);
 
-  const handleNotesButton = (e: any) => {
-    e.preventDefault();
-    navigate("/home/notes");
-    setNotesButtonBackgroundColor(
-      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-    );
-    setListsButtonBackgroundColor("transparent");
-    setDrawButtonBackgroundColor("transparent");
-  };
+  // const handleNotesButton = (e: any) => {
+  //   e.preventDefault();
+  //   navigate("/home/notes");
+  //   setNotesButtonBackgroundColor(
+  //     themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //   );
+  //   setListsButtonBackgroundColor("transparent");
+  //   setDrawButtonBackgroundColor("transparent");
+  // };
 
-  const handleListsButton = (e: any) => {
-    e.preventDefault();
-    navigate("/home/lists");
-    setNotesButtonBackgroundColor("transparent");
-    setListsButtonBackgroundColor(
-      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-    );
-    setDrawButtonBackgroundColor("transparent");
-  };
+  // const handleListsButton = (e: any) => {
+  //   e.preventDefault();
+  //   navigate("/home/lists");
+  //   setNotesButtonBackgroundColor("transparent");
+  //   setListsButtonBackgroundColor(
+  //     themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //   );
+  //   setDrawButtonBackgroundColor("transparent");
+  // };
 
-  const handleDrawButton = (e: any) => {
-    e.preventDefault();
-    navigate("/home/draw");
-    setNotesButtonBackgroundColor("transparent");
-    setListsButtonBackgroundColor("transparent");
-    setDrawButtonBackgroundColor(
-      themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
-    );
-  };
+  // const handleDrawButton = (e: any) => {
+  //   e.preventDefault();
+  //   navigate("/home/draw");
+  //   setNotesButtonBackgroundColor("transparent");
+  //   setListsButtonBackgroundColor("transparent");
+  //   setDrawButtonBackgroundColor(
+  //     themeModeContext?.themeMode?.theme === "light" ? "#f1f111" : "#7d53a7"
+  //   );
+  // };
 
   return (
     <NavbarContainer>
@@ -152,6 +155,7 @@ export default Navbar;
 const NavbarContainer = styled.nav`
   background-color: var(--navbarBackground);
   display: flex;
+  border-bottom: 1px solid var(--fileContentBackgroundColor);
   box-sizing: border-box;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -191,7 +195,7 @@ const NavbarLogo = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding:0 0 5px 0;
-  color: var(--text);
+  color: var(--toggleButtonColor);
   font-size:18px;
   &:hover {
     cursor: pointer;
@@ -225,7 +229,7 @@ const NavbarButton = styled.div`
 
 const NavbarSignOutButton = styled.div`
   border: none;
-  color: var(--text);
+  color: var(--signoutButtonColor);
   padding: 0 5px 2px 5px;
   border-radius: 2px;
   font-weight: 500;

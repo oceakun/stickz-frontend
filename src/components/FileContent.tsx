@@ -116,7 +116,8 @@ const FileContent = () => {
 
   return (
     <FileContentContainer>
-      <FileContentCommandsPallete>
+      <FileContentCommandPalletesContainer>
+      <FileContentCommandsPallete1>
         <FileContentCommandIcons>
           <OptionIconWrapper onClick={showColorPallete}>
             <PaletteIcon />
@@ -124,16 +125,10 @@ const FileContent = () => {
           <OptionIconWrapper onClick={showBulletinPallete}>
             <MoreHorizIcon />
           </OptionIconWrapper>
-          <OptionIconWrapper>
-            <GestureIcon />
-          </OptionIconWrapper>
-          <OptionIconWrapper>
-            <ListIcon />
-          </OptionIconWrapper>
         </FileContentCommandIcons>
-      </FileContentCommandsPallete>
+      </FileContentCommandsPallete1>
 
-      <FileContentSubCommandsPallete>
+      <FileContentCommandsPallete2>
         <ColorPallete displayStatus={colorPalleteDisplayStatus}>
           <ColorPalleteIndividualColor
             onClick={(event: any) =>
@@ -207,7 +202,25 @@ const FileContent = () => {
             ⋗
           </BulletsPalleteIndividualIcon>
         </BulletsPallete>
-      </FileContentSubCommandsPallete>
+        </FileContentCommandsPallete2>
+        
+      <FileContentCommandsPallete1>
+        <FileContentCommandIcons>
+          <OptionIconWrapper>
+            <GestureIcon />
+          </OptionIconWrapper>
+        </FileContentCommandIcons>
+        </FileContentCommandsPallete1>
+        
+        <FileContentCommandsPallete1>
+        <FileContentCommandIcons>
+          <OptionIconWrapper>
+            <ListIcon />
+          </OptionIconWrapper>
+        </FileContentCommandIcons>
+        </FileContentCommandsPallete1>
+        
+        </FileContentCommandPalletesContainer>
       <FileContentBody
         autoFocus
         ref={ref}
@@ -231,47 +244,37 @@ const FileContentContainer = styled.div`
   align-items: center;
   background-color: var(--sidebarBackgroundColor);
   align-self: stretch;
-  /* flex-grow:1; */
+  padding: 5px;
+  padding-top:10px;  
 `;
 
 const FileContentBody = styled.textarea`
-  /* display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center; */
+  resize:none;
   border: none;
-  /* border: 1px solid red; */
   flex-grow: 1;
-  border-top: 1px solid var(--sidebarBorderColor);
+  border-radius:5px;
   color: var(--text);
   width: 100%;
   font-size: 13px;
   font-family: "Catamaran", sans-serif;
   background-color: var(--navbarBackground);
-  padding: 1em;
+  padding: 9px;
   box-sizing: border-box;
-  /* position:relative; */
   color: ${(props: textColorType) => props.textColor};
   &:focus {
     outline: none;
   }
 `;
 
-const FileContentCommandsPallete = styled.div`
-  color: var(--text);
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  /* padding: 10px 0 5px 0; */
-  background-color: var(--sidebarBackgroundColor);
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 8px;
-  /* position: relative;
-  z-index: 1; */
+const FileContentCommandPalletesContainer = styled.div`
+display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  justify-content:space-around;
+  gap:10px;
+padding-bottom:5px;
 `;
+
 
 const FileContentCommandIcons = styled.div`
   color: var(--text);
@@ -280,9 +283,14 @@ const FileContentCommandIcons = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 10px;
-  /* padding: 10px 0 5px 0; */
-  background-color: var(--sidebarBackgroundColor);
-  width: 100%;
+  padding: 3px 4px 1px 4px;
+  border-radius:5px;
+  background-color: var(--fileContentBackgroundColor);
+  
+  background-image: linear-gradient(90deg,
+    var(--sidebarContainerMidHalf),
+    var(--sidebarContainerBottomHalf)
+  );
 `;
 
 const OptionIconWrapper = styled.div`
@@ -292,24 +300,32 @@ const OptionIconWrapper = styled.div`
   &:hover {
     opacity: 1;
     cursor: pointer;
-    /* color: var(--fileContentOptionIconHoverColor); */
   }
+  
 `;
 
-const FileContentSubCommandsPallete = styled.div`
+const FileContentCommandsPallete1 = styled.div`
+  color: var(--text);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: var(--sidebarBackgroundColor);
+  /* box-shadow: 0 10px var(--fileContentBackgroundColor); */
+`;
+
+
+const FileContentCommandsPallete2 = styled.div`
   color: var(--text);
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   background-color: var(--navbarBackground);
-
-  box-shadow: 0 2px var(--navbarBackground);
-  /* position: relative; */
-  border: 1px solid var(--sidebarBorderColor);
-  border-radius: 3px 3px 0 0;
-  border-bottom: none;
-  z-index: 1;
+  box-shadow: 0 10px var(--navbarBackground);
+  border-radius: 5px 5px 0 0;
+  padding:2px 0 2px 0;
 `;
 
 const ColorPallete = styled.div`
@@ -320,7 +336,7 @@ const ColorPallete = styled.div`
   gap: 8px;
   padding: 5px;
   width: 120px;
-  height: 20px;
+  height: 18px;
 `;
 
 const BulletsPallete = styled.div`
@@ -331,7 +347,7 @@ const BulletsPallete = styled.div`
   gap: 8px;
   padding: 5px;
   width: 120px;
-  height: 20px;
+  height: 18px;
 `;
 
 const ColorPalleteIndividualColor = styled.div`

@@ -24,6 +24,7 @@ const MainBodyContainer = styled.div`
   box-sizing:border-box;
   flex:none;
   order:0;
+  /* gap:5px; */
   align-self: stretch;
   flex-grow:1;
 `;
