@@ -128,20 +128,22 @@ const SignUp = () => {
 export default SignUp;
 
 const SignUpContainer = styled.div`
-  margin-top: 50px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  
+  background-color: var(--background);
+  display: block;
+  margin:auto;
+  height: 100vh;
 `;
 
 const RegistrationContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: var(--signInAndSignOutCardBackgroundColor);
   border-radius: 5px;
-  padding: 0 75px 10px 75px;
+  padding:0 75px 10px 75px;;
+  padding-top:0;
   > p {
     color: var(--text);
     font-size: 13px;
@@ -152,7 +154,7 @@ const RegistrationContainer = styled.div`
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 20px;
     font-weight: normal;
-    padding: 2px;
+    /* padding: 2px; */
     color: var(--text);
   }
 `;

@@ -1,15 +1,11 @@
-import SettingsIcon from "@mui/icons-material/Settings";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { ModalWindowsDisplayNameContext } from "../contexts/ModalWindowsDisplayNameContext";
 
 interface Props {}
 
-type onClickModalTypes = {
-  displayStatus: string;
-};
-
-const Settings = () => {
+const Help = () => {
   const modalWindowsDisplayNameContext = useContext(
     ModalWindowsDisplayNameContext
   );
@@ -19,23 +15,20 @@ const Settings = () => {
   );
 
   return (
-    <SettingsContainer displayValue={modalWindowName}>
+    <HelpContainer displayValue={modalWindowName}>
       <CloseSettingsIcon>
-        <SettingsIcon />
+        <QuestionMarkIcon />
       </CloseSettingsIcon>
-      <SettingsCard>
-        {/* <p>Settings</p> */}
-        <p>Fonts</p>
-        <p>Default Themes</p>
-        <p>Bulletins</p>
-      </SettingsCard>
-    </SettingsContainer>
+      <HelpCard>
+        <p>Learn to best use stickza !!</p>
+      </HelpCard>
+    </HelpContainer>
   );
 };
 
-export default Settings;
+export default Help;
 
-const SettingsContainer = styled.div`
+const HelpContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -60,7 +53,7 @@ const CloseSettingsIcon = styled.div`
   }
 `;
 
-const SettingsCard = styled.div`
+const HelpCard = styled.div`
   background-color: var(--sidebarBackgroundColor);
   border-radius: 5px;
   padding: 20px 30px 20px 30px;

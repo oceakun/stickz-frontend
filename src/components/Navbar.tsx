@@ -21,6 +21,7 @@ const Navbar = () => {
   //     ? themeModeContext?.themeMode?.theme
   //     : "transparent"
   // );
+  
   // const [listsButtonBackgroundColor, setListsButtonBackgroundColor] = useState(
   //   window.location.pathname == "/home/lists"
   //     ? themeModeContext?.themeMode?.theme
@@ -156,13 +157,15 @@ const NavbarContainer = styled.nav`
   background-color: var(--navbarBackground);
   display: flex;
   border-bottom: 1px solid var(--fileContentBackgroundColor);
-  box-sizing: border-box;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   padding: .5em;
   height:10%;
   width: 100%;
+  flex:none;
+  order:0;
+  box-sizing: border-box;
 `;
 
 const NavbarFirstHalf = styled.div`

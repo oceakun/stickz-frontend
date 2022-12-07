@@ -12,7 +12,6 @@ const MainBody = () => {
     </MainBodyContainer>
   );
 };
-
 export default MainBody;
 
 const MainBodyContainer = styled.div`
@@ -20,11 +19,11 @@ const MainBodyContainer = styled.div`
   flex-flow: row nowrap;
   align-items: flex-start;
   height:90%;
+  width:100%;
   position:relative;
   box-sizing:border-box;
   flex:none;
   order:0;
-  /* gap:5px; */
   align-self: stretch;
   flex-grow:1;
 `;

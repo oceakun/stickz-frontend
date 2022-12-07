@@ -1,15 +1,11 @@
-import SettingsIcon from "@mui/icons-material/Settings";
+import ShareIcon from "@mui/icons-material/Share";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { ModalWindowsDisplayNameContext } from "../contexts/ModalWindowsDisplayNameContext";
 
 interface Props {}
 
-type onClickModalTypes = {
-  displayStatus: string;
-};
-
-const Settings = () => {
+const Share = () => {
   const modalWindowsDisplayNameContext = useContext(
     ModalWindowsDisplayNameContext
   );
@@ -19,29 +15,27 @@ const Settings = () => {
   );
 
   return (
-    <SettingsContainer displayValue={modalWindowName}>
+    <ShareContainer displayValue={modalWindowName}>
       <CloseSettingsIcon>
-        <SettingsIcon />
+        <ShareIcon />
       </CloseSettingsIcon>
-      <SettingsCard>
-        {/* <p>Settings</p> */}
-        <p>Fonts</p>
-        <p>Default Themes</p>
-        <p>Bulletins</p>
-      </SettingsCard>
-    </SettingsContainer>
+      <ShareCard>
+        <ShareButtonInsidecard>Share</ShareButtonInsidecard>
+      </ShareCard>
+    </ShareContainer>
   );
 };
 
-export default Settings;
+export default Share;
 
-const SettingsContainer = styled.div`
+const ShareContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   /* position: absolute; */
   /* z-index:500; */
   padding: 20px;
+  /* pointer-events: none;   */
   /* pointer-events:none */
 `;
 
@@ -60,12 +54,27 @@ const CloseSettingsIcon = styled.div`
   }
 `;
 
-const SettingsCard = styled.div`
+const ShareCard = styled.div`
   background-color: var(--sidebarBackgroundColor);
   border-radius: 5px;
-  padding: 20px 30px 20px 30px;
+  padding: 40px 30px 20px 30px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   color: var(--text);
+`;
+
+const ShareButtonInsidecard = styled.div`
+  border: none;
+  color: var(--signoutButtonColor);
+  padding: 0 5px 2px 5px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+  border: 1px solid var(--signoutButtonBorderColor);
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 `;

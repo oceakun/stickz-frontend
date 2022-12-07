@@ -4,7 +4,7 @@ export const FilesForSidebar = [
     fileIds: [
       { fileName: "file1", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
       { fileName: "file2", fileClicked: false ,checkboxClicked: false,selectedWithSelectAllIcon:false},
-    ],
+    ], 
     status: "shut",
     folderId: "folder1",
     folderClicked: false,

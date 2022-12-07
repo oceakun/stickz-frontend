@@ -3,11 +3,12 @@ import useLocalStorage from "use-local-storage";
 import styled from "styled-components";
 import { ThemeModeContext } from "./components/contexts/ThemeModeContext";
 import { FileSectionStatusContext } from "./components/contexts/FileSectionStatusContext";
+import { ModalWindowsDisplayNameContext } from "./components/contexts/ModalWindowsDisplayNameContext";
+import { ModalWindowsDisplayValueContext } from "./components/contexts/ModalWindowDisplayValueContext";
+import { FoldersAndFilesRecordContext } from "./components/contexts/FoldersAndFilesRecordContext";
+import { FilesForSidebar } from "./components/FilesForSidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Notes from "./components/threeMainUtilies/Notes";
-import Lists from "./components/threeMainUtilies/Lists";
-import Draw from "./components/threeMainUtilies/Draw";
 import SignUp from "./pages/authPages/SignUp";
 import SignIn from "./pages/authPages/SignIn";
 import LandingPage from "./pages/LandingPage";
@@ -15,7 +16,6 @@ import NoMatch from "./pages/NoMatch";
 import OriginalOutletPage from "./pages/OriginalOutletPage";
 
 function App() {
-  // "flash of wrong theme"
   const themeModeContext = useContext(ThemeModeContext);
   const [theme, setTheme] = useLocalStorage(
     "theme",
@@ -28,25 +28,64 @@ function App() {
     fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
   );
 
+  const modalWindowsDisplayNameContext = useContext(
+    ModalWindowsDisplayNameContext
+  );
+  const [modalWindowName, setModalWindowName] = useLocalStorage(
+    "whichModalWindow",
+    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+  );
+
+  const modalWindowsDisplayValueContext = useContext(
+    ModalWindowsDisplayValueContext
+  );
+  const [modalWindowValue, setModalWindowValue] = useLocalStorage(
+    "modalWindowsDisplayValue",
+    modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+      ?.modalWindowDisplayValue
+  );
+
+  const foldersAndFilesRecordContext = useContext(FoldersAndFilesRecordContext);
+  const [foldersAndFilesRecord, setFoldersAndFilesRecord] = useLocalStorage(
+    "modalWindowsDisplayValue",
+    foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+  );
+
   useEffect(() => {
-    // console.log("app - useEffect called");
-    // console.log(
-    //   "themeModeContext?.themeMode?.theme : ",
-    //   themeModeContext?.themeMode?.theme
-    // );
     setTheme(themeModeContext?.themeMode?.theme);
   }, [themeModeContext?.themeMode?.theme]);
 
   useEffect(() => {
-    // console.log("app - useEffect called");
-    // console.log(
-    //   "fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut : ",
-    //   fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
-    // );
     setFileSectionStatus(
       fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
     );
   }, [fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut]);
+
+  useEffect(() => {
+    setModalWindowName(
+      modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+    );
+  }, [
+    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow,
+  ]);
+
+  useEffect(() => {
+    setModalWindowValue(
+      modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+        ?.modalWindowDisplayValue
+    );
+  }, [
+    modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+      ?.modalWindowDisplayValue,
+  ]);
+  
+  useEffect(() => {
+    setFoldersAndFilesRecord(
+      foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+    );
+  }, [
+    foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+  ]);
 
   return (
     <AppContainer data-theme={theme} fileSectionStatus={fileSectionStatus}>
@@ -65,12 +104,13 @@ function App() {
     </AppContainer>
   );
 }
+
 export default App;
 const AppContainer = styled.div`
   background-color: var(--background);
   display: flex;
-  align-items:flex-start;
-position:relative;
+  align-items: flex-start;
+  position: relative;
   height: 100%;
   width: 100%;
   > div {

@@ -204,7 +204,7 @@ const FileContent = () => {
         </BulletsPallete>
         </FileContentCommandsPallete2>
         
-      <FileContentCommandsPallete1>
+      {/* <FileContentCommandsPallete1>
         <FileContentCommandIcons>
           <OptionIconWrapper>
             <GestureIcon />
@@ -218,7 +218,7 @@ const FileContent = () => {
             <ListIcon />
           </OptionIconWrapper>
         </FileContentCommandIcons>
-        </FileContentCommandsPallete1>
+        </FileContentCommandsPallete1> */}
         
         </FileContentCommandPalletesContainer>
       <FileContentBody
@@ -244,8 +244,16 @@ const FileContentContainer = styled.div`
   align-items: center;
   background-color: var(--sidebarBackgroundColor);
   align-self: stretch;
-  padding: 5px;
-  padding-top:10px;  
+  /* padding: 5px; */
+  padding-top:10px; 
+  
+  /* position: relative; */
+  /* height: 100%; */
+  /* box-sizing: border-box; */
+  /* flex: none; */
+  /* order: 0; */
+  /* align-self: stretch; */
+  /* flex-grow: 0;  */
 `;
 
 const FileContentBody = styled.textarea`

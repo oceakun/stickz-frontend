@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  background-color: red;
+  background-color: var(--background);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -130,7 +130,7 @@ code {
   --transparent:transparent;
 }
 
-[data-theme="dark"] {
+[data-theme="mid"] {
   --sidebarBackgroundColor: #1d0731;
   --sidebarOptionsColor: #7d53a7;
   --sidebarBorderColor: #7d53a7;
@@ -172,11 +172,11 @@ code {
   --transparent:transparent;
 }
 
-[data-theme="mid"] {
-  --sidebarBackgroundColor: #000000;
-  --sidebarOptionsColor: #373638;
+[data-theme="dark"] {
+  --sidebarBackgroundColor: #0c0c0c;
+  --sidebarOptionsColor: #4c4c4d;
   --sidebarBorderColor: #373638;
-  --fileContentOptionsColor: #373638;
+  --fileContentOptionsColor: #4c4c4d;
   --folderHoverBackgroundColor: #000000;
   --colorPalleteIndividualColor1: rgb(215, 125, 143);
   --colorPalleteIndividualColor2: rgb(169, 238, 238);
@@ -203,8 +203,8 @@ code {
 
 --fileContentBackgroundColor:#2a2828;
 
-  --sidebarContainerTopHalf:#0c0c0c;
-  --sidebarContainerMidHalf:#0c0c0c;
-  --sidebarContainerBottomHalf:#0c0c0c;
+  --sidebarContainerTopHalf:#000000;
+  --sidebarContainerMidHalf:#000000;
+  --sidebarContainerBottomHalf:#000000;
   --transparent:transparent;
 }

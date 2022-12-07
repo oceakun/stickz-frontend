@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useContext, useState, useEffect } from "react";
 import { FileSectionStatusContext } from "./contexts/FileSectionStatusContext";
+import { ModalWindowsDisplayNameContext } from "./contexts/ModalWindowsDisplayNameContext";
+import { ModalWindowsDisplayValueContext } from "./contexts/ModalWindowDisplayValueContext";
+import {FoldersAndFilesRecordContext} from "./contexts/FoldersAndFilesRecordContext";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -46,11 +49,26 @@ const Sidebar = (props: any) => {
     folders: [""],
     files: [""],
   });
-  const fileSectionStatusContext = useContext(FileSectionStatusContext);
 
+
+  const fileSectionStatusContext = useContext(FileSectionStatusContext);
   const [fileSectionStatus, setFileSectionStatus] = useState(
     fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
   );
+
+  const modalWindowsDisplayNameContext = useContext(
+    ModalWindowsDisplayNameContext
+  );
+  const [modalWindowName, setModalWindowName] = useState(
+    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+  );
+
+  const modalWindowsDisplayValueContext = useContext(ModalWindowsDisplayValueContext);
+  const [modalWindowValue, setModalWindowValue] = useState(
+    modalWindowsDisplayValueContext?.modalWindowsDisplayValue?.modalWindowDisplayValue
+  );
+
+  const foldersAndFilesRecordContext = useContext(FoldersAndFilesRecordContext);
 
   useEffect(() => {
     const foldersArray = [""];
@@ -68,6 +86,9 @@ const Sidebar = (props: any) => {
       folders: [...foldersArray],
       files: [...filesArray],
     });
+    // foldersAndFilesRecordContext?.foldersAndFilesRecord({
+    //   foldersAndFiles: nameOfTheModalWindow,
+    // });
   }, [folderList]);
 
   useEffect(() => {
@@ -75,6 +96,16 @@ const Sidebar = (props: any) => {
       fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
     );
   }, [fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut]);
+
+  useEffect(() => {
+    setModalWindowName(
+      modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+    );
+  }, [
+    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow,
+  ]);
+
+
 
   const handleSearchIconClick = () => {
     fileSectionStatusContext?.setFileSectionStatus({
@@ -110,21 +141,31 @@ const Sidebar = (props: any) => {
     setCreateNewFileOptionDisplayValue("none");
   };
 
-  const handleFolderClicked = (e: any, indexOfTheClickedFolder: any) => {
-    const newFolderList = 
-      folderList.map((folder, folderIndex) => {
-        if (folderIndex == indexOfTheClickedFolder) {
-          if (folder.status == "open") {
-            return { ...folder, status: "shut" };
-          } else {
-            return { ...folder, status: "open" };
-          }
-        } else {
-          return { ...folder };
-        }
-      })
+  const handleModalWindowName = (e: any, nameOfTheModalWindow: string) => {
+    console.log(nameOfTheModalWindow,"set");
+    modalWindowsDisplayNameContext?.setModalWindowsDisplayName({
+      whichModalWindow: nameOfTheModalWindow,
+    });
+    modalWindowsDisplayValueContext?.setModalWindowsDisplayValue({
+      modalWindowDisplayValue: "block",
+    });
+  };
 
+  const handleFolderClicked = (e: any, indexOfTheClickedFolder: any) => {
+    const newFolderList = folderList.map((folder, folderIndex) => {
+      if (folderIndex == indexOfTheClickedFolder) {
+        if (folder.status == "open") {
+          return { ...folder, status: "shut" };
+        } else {
+          return { ...folder, status: "open" };
+        }
+      } else {
+        return { ...folder };
+      }
+    });
     setFolderList(newFolderList);
+    
+    
   };
 
   const handleFileClicked = (
@@ -133,8 +174,7 @@ const Sidebar = (props: any) => {
     indexOfTheEncompassingFolder: any
   ) => {
     e.preventDefault();
-    const newFolderList =
-      folderList.map((folder, folderIndex) => {
+    const newFolderList = folderList.map((folder, folderIndex) => {
       if (folderIndex == indexOfTheEncompassingFolder) {
         folder.fileIds.map((file, fileIndex) => {
           if (fileIndex == indexOfTheClickedFile) {
@@ -146,8 +186,7 @@ const Sidebar = (props: any) => {
           }
         });
         return { ...folder, status: "open" };
-      }
-      else {
+      } else {
         folder.fileIds.map((file, fileIndex) => {
           file.fileClicked = false;
           return file;
@@ -256,7 +295,6 @@ const Sidebar = (props: any) => {
     });
   };
 
-
   const handleNewFolder = () => {
     const folderName = newFolderName;
     const newFolderObject = {
@@ -271,7 +309,6 @@ const Sidebar = (props: any) => {
     setFolderList(draftFolderList);
   };
 
-
   const handleNewFile = () => {
     const fileName = newFileName;
     const newFileObject = {
@@ -280,13 +317,18 @@ const Sidebar = (props: any) => {
       checkboxClicked: false,
       selectedWithSelectAllIcon: false,
     };
-    const draftFolderList = [...folderList.map((folder, folderIndex) => {
-      if (folder.name === "---") {
-        const modifiedFolder = { ...folder, fileIds: [...folder.fileIds, newFileObject] };
-        return { ...modifiedFolder };
-      }
-      return folder;
-    })];
+    const draftFolderList = [
+      ...folderList.map((folder, folderIndex) => {
+        if (folder.name === "---") {
+          const modifiedFolder = {
+            ...folder,
+            fileIds: [...folder.fileIds, newFileObject],
+          };
+          return { ...modifiedFolder };
+        }
+        return folder;
+      }),
+    ];
     setFolderList(draftFolderList);
   };
 
@@ -304,13 +346,19 @@ const Sidebar = (props: any) => {
           <OptionIconWrapper onClick={handleCreateNewFolderIconClicked}>
             <CreateNewFolderIcon />
           </OptionIconWrapper>
-          <OptionIconWrapper>
+          <OptionIconWrapper
+            onClick={(event: any) => handleModalWindowName(event, "share")}
+          >
             <ShareIcon />
           </OptionIconWrapper>
-          <OptionIconWrapper>
+          <OptionIconWrapper
+            onClick={(event: any) => handleModalWindowName(event, "download")}
+          >
             <DownloadIcon />
           </OptionIconWrapper>
-          <OptionIconWrapper>
+          <OptionIconWrapper
+            onClick={(event: any) => handleModalWindowName(event, "delete")}
+          >
             <DeleteIcon />
           </OptionIconWrapper>
         </SidebarContainerTopHalf>
@@ -322,10 +370,14 @@ const Sidebar = (props: any) => {
 
         <LightVerticalLink></LightVerticalLink>
         <SidebarContainerBottomHalf>
-          <OptionIconWrapper>
+          <OptionIconWrapper
+            onClick={(event: any) => handleModalWindowName(event, "settings")}
+          >
             <SettingsIcon />
           </OptionIconWrapper>
-          <OptionIconWrapper>
+          <OptionIconWrapper
+            onClick={(event: any) => handleModalWindowName(event, "help")}
+          >
             <QuestionMarkIcon />
           </OptionIconWrapper>
         </SidebarContainerBottomHalf>
@@ -542,9 +594,7 @@ const SidebarContainer = styled.div`
   background-color: var(--sidebarBackgroundColor);
   position: relative;
   height: 100%;
-  order: 0;
   box-sizing: border-box;
-
   flex: none;
   order: 0;
   align-self: stretch;

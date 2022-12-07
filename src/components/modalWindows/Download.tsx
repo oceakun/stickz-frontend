@@ -1,15 +1,11 @@
-import SettingsIcon from "@mui/icons-material/Settings";
+import DownloadIcon from "@mui/icons-material/Download";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { ModalWindowsDisplayNameContext } from "../contexts/ModalWindowsDisplayNameContext";
 
 interface Props {}
 
-type onClickModalTypes = {
-  displayStatus: string;
-};
-
-const Settings = () => {
+const Download = () => {
   const modalWindowsDisplayNameContext = useContext(
     ModalWindowsDisplayNameContext
   );
@@ -19,23 +15,20 @@ const Settings = () => {
   );
 
   return (
-    <SettingsContainer displayValue={modalWindowName}>
+    <DownloadContainer displayValue={modalWindowName}>
       <CloseSettingsIcon>
-        <SettingsIcon />
+        <DownloadIcon />
       </CloseSettingsIcon>
-      <SettingsCard>
-        {/* <p>Settings</p> */}
-        <p>Fonts</p>
-        <p>Default Themes</p>
-        <p>Bulletins</p>
-      </SettingsCard>
-    </SettingsContainer>
+      <DownloadCard>
+        <DownloadButtonInsidecard>Download</DownloadButtonInsidecard>
+      </DownloadCard>
+    </DownloadContainer>
   );
 };
 
-export default Settings;
+export default Download;
 
-const SettingsContainer = styled.div`
+const DownloadContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -60,12 +53,27 @@ const CloseSettingsIcon = styled.div`
   }
 `;
 
-const SettingsCard = styled.div`
+const DownloadCard = styled.div`
   background-color: var(--sidebarBackgroundColor);
   border-radius: 5px;
-  padding: 20px 30px 20px 30px;
+  padding: 40px 30px 20px 30px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   color: var(--text);
+`;
+
+const DownloadButtonInsidecard = styled.div`
+  border: none;
+  color: var(--signoutButtonColor);
+  padding: 0 5px 2px 5px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+  border: 1px solid var(--signoutButtonBorderColor);
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 `;

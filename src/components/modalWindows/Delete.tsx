@@ -1,15 +1,11 @@
-import SettingsIcon from "@mui/icons-material/Settings";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { ModalWindowsDisplayNameContext } from "../contexts/ModalWindowsDisplayNameContext";
 
 interface Props {}
 
-type onClickModalTypes = {
-  displayStatus: string;
-};
-
-const Settings = () => {
+const Delete = () => {
   const modalWindowsDisplayNameContext = useContext(
     ModalWindowsDisplayNameContext
   );
@@ -19,23 +15,20 @@ const Settings = () => {
   );
 
   return (
-    <SettingsContainer displayValue={modalWindowName}>
+    <DeleteContainer displayValue={modalWindowName}>
       <CloseSettingsIcon>
-        <SettingsIcon />
+        <DeleteIcon />
       </CloseSettingsIcon>
-      <SettingsCard>
-        {/* <p>Settings</p> */}
-        <p>Fonts</p>
-        <p>Default Themes</p>
-        <p>Bulletins</p>
-      </SettingsCard>
-    </SettingsContainer>
+      <DeleteCard>
+        <DeleteButtonInsidecard>Delete</DeleteButtonInsidecard>
+      </DeleteCard>
+    </DeleteContainer>
   );
 };
 
-export default Settings;
+export default Delete;
 
-const SettingsContainer = styled.div`
+const DeleteContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -60,12 +53,27 @@ const CloseSettingsIcon = styled.div`
   }
 `;
 
-const SettingsCard = styled.div`
+const DeleteCard = styled.div`
   background-color: var(--sidebarBackgroundColor);
   border-radius: 5px;
-  padding: 20px 30px 20px 30px;
+  padding: 40px 30px 20px 30px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   color: var(--text);
+`;
+
+const DeleteButtonInsidecard = styled.div`
+  border: none;
+  color: var(--signoutButtonColor);
+  padding: 0 5px 2px 5px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+  border: 1px solid var(--signoutButtonBorderColor);
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 `;
