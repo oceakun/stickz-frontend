@@ -1,5 +1,7 @@
 # stickz, a note-taking tool
+![image](https://github.com/oceakun/stickz-frontend/assets/83641627/a7b512f4-d711-4d45-bd63-b7aa922be666)
 ![image](https://github.com/oceakun/stickz-frontend/assets/83641627/808fe23b-9c55-46ce-b491-e5728e3c0a10)
+![image](https://github.com/oceakun/stickz-frontend/assets/83641627/3e396ed2-49e6-4d88-a276-f2f028546fd7)
 
 ## stack
 - frontend: React Typescript
