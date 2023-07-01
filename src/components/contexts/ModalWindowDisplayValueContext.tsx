@@ -21,9 +21,7 @@ type ModalWindowsDisplayValueContextProviderProps = {
   }: ModalWindowsDisplayValueContextProviderProps) => {
     const [modalWindowsDisplayValue, setModalWindowsDisplayValue] =
       useState<ModalWindowsDisplayValueType | null>({
-        modalWindowDisplayValue: JSON.parse(
-          localStorage.getItem("modalWindowsDisplayValue") || "{}"
-        ),
+        modalWindowDisplayValue: "none"
       });
     return (
       <ModalWindowsDisplayValueContext.Provider
