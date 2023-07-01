@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useNavigate } from "react-router-dom";
-import { ThemeModeContext } from "../components/contexts/ThemeModeContext";
+import { ThemeModeContext } from "./contexts/ThemeModeContext";
 import { FileSectionStatusContext } from "./contexts/FileSectionStatusContext";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -116,7 +116,9 @@ const Navbar = () => {
           <MenuIcon />
         </NavbarMenuIcon>
 
-        <NavbarLogo onClick={() => navigate("/landingpage")}>
+        <NavbarLogo
+          // onClick={() => navigate("/landingpage")}
+        >
           stickza
         </NavbarLogo>
       </NavbarFirstHalf>
@@ -143,7 +145,7 @@ const Navbar = () => {
         <NavbarToggleButton onClick={switchTheme}>
           <LightModeIcon />
         </NavbarToggleButton>
-        <NavbarSignOutButton onClick={() => navigate("/signin")}>
+        <NavbarSignOutButton onClick={() => navigate("/login")}>
           Sign Out
         </NavbarSignOutButton>
       </NavbarOptionsSecondHalf>
@@ -160,7 +162,7 @@ const NavbarContainer = styled.nav`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: .5em;
+  padding: 0.9rem;
   height:10%;
   width: 100%;
   flex:none;
@@ -193,11 +195,7 @@ const NavbarMenuIcon = styled.div`
 `;
 
 const NavbarLogo = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding:0 0 5px 0;
+  padding:0;
   color: var(--toggleButtonColor);
   font-size:18px;
   &:hover {
@@ -231,18 +229,22 @@ const NavbarButton = styled.div`
 `;
 
 const NavbarSignOutButton = styled.div`
+font-family: var(--font-mono), JetBrains Mono, ui-monospace, SFMono-Regular,
+  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   border: none;
   color: var(--signoutButtonColor);
-  padding: 0 5px 2px 5px;
+  padding: 5px 5px 5px 5px;
   border-radius: 2px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 16px;
   opacity: 0.8;
-  border: 1px solid var(--signoutButtonBorderColor);
+  // border: 1px solid var(--signoutButtonBorderColor);
+  background:var(--sidebarBackgroundColor);
   &:hover {
     cursor: pointer;
     opacity: 1;
   }
+  
 `;
 
 const NavbarToggleButton = styled.div`
