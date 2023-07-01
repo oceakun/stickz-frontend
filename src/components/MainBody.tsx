@@ -1,5 +1,5 @@
-import Sidebar from "../components/Sidebar";
-import FileContent from "../components/FileContent";
+import Sidebar from "./sidebar/Sidebar";
+import FileContent from "./sidebar/FileContent";
 import styled from "styled-components";
 
 interface Props {}
