@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { FilesForSidebar } from "../../components/FilesForSidebar";
+import { FilesForSidebar } from "../sidebar/FilesForSidebar";
 
 export type FoldersAndFilesRecordType = {
   foldersAndFiles:
