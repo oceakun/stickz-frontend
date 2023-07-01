@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { ThemeContextProvider } from "./components/contexts/ThemeContext";
 import { ThemeModeContextProvider } from "./components/contexts/ThemeModeContext";
 import { FileSectionStatusContextProvider } from "./components/contexts/FileSectionStatusContext";
 import { ModalWindowsDisplayNameContextProvider } from "./components/contexts/ModalWindowsDisplayNameContext";
@@ -14,7 +13,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeContextProvider>
       <ThemeModeContextProvider>
         <FileSectionStatusContextProvider>
           <ModalWindowsDisplayNameContextProvider>
@@ -26,6 +24,5 @@ root.render(
           </ModalWindowsDisplayNameContextProvider>
         </FileSectionStatusContextProvider>
       </ThemeModeContextProvider>
-    </ThemeContextProvider>
   </React.StrictMode>
 );
