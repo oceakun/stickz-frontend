@@ -9,42 +9,54 @@ interface Props {}
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  const sellingPoints = [
+    "create & search, delete, update, download and share notes embedded with text and images",
+    "organize notes with files and folders",
+    "set interface theme and configurations to your liking",
+    "enjoy a responsive design which lets you use the tool on any device, be it, a pc, mobile phone or tablet",
+    "save files to your account by signing up",
+  ];
+
   return (
-    <LandingPageContainer >
-      <LandingPageNavbar >
-        <LandingPageLogo onClick={() => navigate("/home")} >
+    <LandingPageContainer>
+      <LandingPageNavbar>
+        <LandingPageLogo onClick={() => navigate("/home")}>
           stickza
         </LandingPageLogo>
 
-        <LandingPageNavbarButton
-          style={{ padding: "2px 10px 4px 10px", fontSize: "12px" }}
-          onClick={() => navigate("/signin")}
-          
-        >
+        <LandingPageNavbarButton onClick={() => navigate("/login")}>
           Sign In
         </LandingPageNavbarButton>
       </LandingPageNavbar>
-      <LandingPageHero >
-        <LandingPageHeroText >
-          {/* <h3>stickza = that sticks</h3> */}
-          <LandingPageHeroTextBulletsContainer >
-            <LandingPageHeroTextBullet >
-              <KeyboardArrowRightIcon />
-              <p>Document your findings in an organised manner.</p>
-            </LandingPageHeroTextBullet>
-
-            <LandingPageHeroTextBullet >
-              <KeyboardArrowRightIcon />
-              <p>Take down lists.</p>
-            </LandingPageHeroTextBullet>
-
-            <LandingPageHeroTextBullet >
-              <KeyboardArrowRightIcon />
-              <p>Draw.</p>
-            </LandingPageHeroTextBullet>
-          </LandingPageHeroTextBulletsContainer>
+      <LandingPageHero>
+        <LandingPageHeroText>
+          <LandingPageHeroTextBullet>
+            <KeyboardArrowRightIcon />
+            <p>
+              create & search, delete, update, download and share notes embedded
+              with text and images
+            </p>
+          </LandingPageHeroTextBullet>
+          <LandingPageHeroTextBullet>
+            <KeyboardArrowRightIcon />
+            <p>organize notes with files and folders</p>
+          </LandingPageHeroTextBullet>
+          <LandingPageHeroTextBullet>
+            <KeyboardArrowRightIcon />
+            <p>set interface theme and configurations to your liking</p>
+          </LandingPageHeroTextBullet>
+          <LandingPageHeroTextBullet>
+            <KeyboardArrowRightIcon />
+            <p>
+              enjoy a responsive design which lets you use the tool across devices with varying screen-size
+            </p>
+          </LandingPageHeroTextBullet>
+          <LandingPageHeroTextBullet>
+            <KeyboardArrowRightIcon />
+            <p>save files to your account by signing up</p>
+          </LandingPageHeroTextBullet>
         </LandingPageHeroText>
-        <LandingPageHeroButton onClick={() => navigate("/signup")} >
+        <LandingPageHeroButton onClick={() => navigate("/signup")}>
           Get started
         </LandingPageHeroButton>
       </LandingPageHero>
@@ -56,7 +68,7 @@ export default LandingPage;
 
 const LandingPageContainer = styled.div`
   background-color: #0a041b;
-  height:100vh;
+  height: 100vh;
 `;
 
 const LandingPageNavbar = styled.div`
@@ -66,7 +78,7 @@ const LandingPageNavbar = styled.div`
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  padding: 2px;
+  padding: 12px 2px;
   background-color: #111633;
 `;
 
@@ -76,10 +88,10 @@ const LandingPageHero = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-  gap:100px;
+  gap: 100px;
   align-items: center;
   text-align: justify;
-
+  margin-top:100px;
   @media only screen and (max-width: 1200px) {
     width: 100vw;
     background-color: transparent;
@@ -110,11 +122,11 @@ const LandingPageNavbarButton = styled.div`
   background-color: #1a214a;
 
   color: white;
-  padding: 5px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
   opacity: 0.8;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.8;
   &:hover {
     cursor: pointer;
@@ -126,9 +138,9 @@ const LandingPageHeroButton = styled.div`
   border: 2px solid transparent;
   color: white;
   background-color: #1a214a;
-  padding: 5px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.8;
   border-radius: 5px;
   &:hover {
@@ -148,8 +160,9 @@ const LandingPageHeroText = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 0;
+  margin-top:
 
   > h3 {
     font-family: "Quicksand", sans-serif;
