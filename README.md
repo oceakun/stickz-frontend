@@ -1,4 +1,4 @@
-# stickz, a note-taking tool
+# stickza, a note-taking tool
 ![image](https://github.com/oceakun/stickz-frontend/assets/83641627/a7b512f4-d711-4d45-bd63-b7aa922be666)
 
 ## stack
