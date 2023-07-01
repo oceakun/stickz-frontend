@@ -6,11 +6,11 @@ import { FileSectionStatusContext } from "./components/contexts/FileSectionStatu
 import { ModalWindowsDisplayNameContext } from "./components/contexts/ModalWindowsDisplayNameContext";
 import { ModalWindowsDisplayValueContext } from "./components/contexts/ModalWindowDisplayValueContext";
 import { FoldersAndFilesRecordContext } from "./components/contexts/FoldersAndFilesRecordContext";
-import { FilesForSidebar } from "./components/FilesForSidebar";
+import { FilesForSidebar } from "./components/sidebar/FilesForSidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import SignUp from "./pages/authPages/SignUp";
-import SignIn from "./pages/authPages/SignIn";
+import SignUp from "./pages/Register";
+import SignIn from "./pages/LogIn";
 import LandingPage from "./pages/LandingPage";
 import NoMatch from "./pages/NoMatch";
 import OriginalOutletPage from "./pages/OriginalOutletPage";
@@ -23,33 +23,34 @@ function App() {
   );
 
   const fileSectionStatusContext = useContext(FileSectionStatusContext);
+
   const [fileSectionStatus, setFileSectionStatus] = useLocalStorage(
     "fileSectionOpenOrShut",
     fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut
   );
 
-  const modalWindowsDisplayNameContext = useContext(
-    ModalWindowsDisplayNameContext
-  );
-  const [modalWindowName, setModalWindowName] = useLocalStorage(
-    "whichModalWindow",
-    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
-  );
+  // const modalWindowsDisplayNameContext = useContext(
+  //   ModalWindowsDisplayNameContext
+  // );
+  // const [modalWindowName, setModalWindowName] = useLocalStorage(
+  //   "whichModalWindow",
+  //   modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+  // );
 
-  const modalWindowsDisplayValueContext = useContext(
-    ModalWindowsDisplayValueContext
-  );
-  const [modalWindowValue, setModalWindowValue] = useLocalStorage(
-    "modalWindowsDisplayValue",
-    modalWindowsDisplayValueContext?.modalWindowsDisplayValue
-      ?.modalWindowDisplayValue
-  );
+  // const modalWindowsDisplayValueContext = useContext(
+  //   ModalWindowsDisplayValueContext
+  // );
+  // const [modalWindowValue, setModalWindowValue] = useLocalStorage(
+  //   "modalWindowsDisplayValue",
+  //   modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+  //     ?.modalWindowDisplayValue
+  // );
 
-  const foldersAndFilesRecordContext = useContext(FoldersAndFilesRecordContext);
-  const [foldersAndFilesRecord, setFoldersAndFilesRecord] = useLocalStorage(
-    "modalWindowsDisplayValue",
-    foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
-  );
+  // const foldersAndFilesRecordContext = useContext(FoldersAndFilesRecordContext);
+  // const [foldersAndFilesRecord, setFoldersAndFilesRecord] = useLocalStorage(
+  //   "modalWindowsDisplayValue",
+  //   foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+  // );
 
   useEffect(() => {
     setTheme(themeModeContext?.themeMode?.theme);
@@ -61,42 +62,42 @@ function App() {
     );
   }, [fileSectionStatusContext?.fileSectionStatus?.fileSectionOpenOrShut]);
 
-  useEffect(() => {
-    setModalWindowName(
-      modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
-    );
-  }, [
-    modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow,
-  ]);
+  // useEffect(() => {
+  //   setModalWindowName(
+  //     modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow
+  //   );
+  // }, [
+  //   modalWindowsDisplayNameContext?.modalWindowsDisplayName?.whichModalWindow,
+  // ]);
 
-  useEffect(() => {
-    setModalWindowValue(
-      modalWindowsDisplayValueContext?.modalWindowsDisplayValue
-        ?.modalWindowDisplayValue
-    );
-  }, [
-    modalWindowsDisplayValueContext?.modalWindowsDisplayValue
-      ?.modalWindowDisplayValue,
-  ]);
+  // useEffect(() => {
+  //   setModalWindowValue(
+  //     modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+  //       ?.modalWindowDisplayValue
+  //   );
+  // }, [
+  //   modalWindowsDisplayValueContext?.modalWindowsDisplayValue
+  //     ?.modalWindowDisplayValue,
+  // ]);
   
-  useEffect(() => {
-    setFoldersAndFilesRecord(
-      foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
-    );
-  }, [
-    foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
-  ]);
+  // useEffect(() => {
+  //   setFoldersAndFilesRecord(
+  //     foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+  //   );
+  // }, [
+  //   foldersAndFilesRecordContext?.foldersAndFilesRecord?.foldersAndFiles
+  // ]);
 
   return (
     <AppContainer data-theme={theme} fileSectionStatus={fileSectionStatus}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<OriginalOutletPage />}>
-            <Route index element={<LandingPage />} />
-            <Route path="landingpage" element={<LandingPage />} />
+            <Route index element={<Home />} />
+            {/* <Route path="landingpage" element={<LandingPage />} /> */}
             <Route path="home" element={<Home />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="signin" element={<SignIn />} />
+            <Route path="register" element={<SignUp />} />
+            <Route path="login" element={<SignIn />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>
